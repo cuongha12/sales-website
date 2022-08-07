@@ -254,3 +254,59 @@ label {
     margin-bottom: 5px;
     font-weight: 700;
 }
+@media only screen and (max-width: 768px){
+    .hrv-banner-content {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 50%;
+        margin-top: 50px;
+    }
+    .hrv-title2{
+        font-size: 50px;
+    }
+    .hrv-titles{
+        font-size: 50px;
+    }
+    .hrv-titles2{
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 425px){
+    .hrv-title1{
+        font-size: 15px;
+    }
+    .hrv-titles1{
+        font-size: 15px;
+    }
+    .hrv-title{
+        font-size: 15px;
+    }
+    .hrv-banner-content {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 50%;
+        margin-top: 15px;
+    }
+    .hrv-title2{
+        font-size: 20px;
+    }
+    .hrv-titles{
+        font-size: 20px;
+    }
+    .hrv-titles2{
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 320px){
+   
+    .hrv-banner-content {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 50%;
+        margin-top: 2px;
+    }
+    
+}

@@ -14,7 +14,7 @@ const Navbar = () => {
         }
     }, [])
     return (
-        <nav className={'navbar-main  navbar-default cl-pri'}>
+        <nav className={'navbar-main  navbar-default cl-pri none'}>
             <div className={ scrolled ? ' sticky ' : '  container nav-wrapper check_nav'}>
                 <div className='row'>
                     <div className='col-lg-6'>
