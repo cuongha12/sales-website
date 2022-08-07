@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import "../Navbar/Nabar.css"
 const Navbar = () => {
+    const [scrolled, setScrolled] = useState(false)
+    useLayoutEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 120)
+
+        }
+        window.addEventListener("scroll", handleScroll)
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
     return (
-        <nav className='navbar-main  navbar-default cl-pri'>
-            <div className='container nav-wrapper check_nav'>
+        <nav className={'navbar-main  navbar-default cl-pri'}>
+            <div className={ scrolled ? ' sticky ' : '  container nav-wrapper check_nav'}>
                 <div className='row'>
                     <div className='col-lg-6'>
                         <div className='navbar-collapse '>
@@ -14,10 +25,10 @@ const Navbar = () => {
                                         Trang chủ
                                     </NavLink>
                                 </li>
-                                <li class="dropdown">
+                                <li className="dropdown">
                                     <NavLink to={'shop'} className={({ isActive }) => (isActive ? 'link active' : 'link')}>
                                         <span>Sản phẩm</span>
-                                        <span class="sub-arrow">...</span>
+                                        <span className="sub-arrow">...</span>
                                     </NavLink>
                                     <ul className='dropdown-menus'>
                                         <li>
@@ -105,7 +116,7 @@ const Navbar = () => {
                                     <div className="search-bar">
                                         <div className="">
                                             <form action="">
-                                                <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off" />
+                                                <input type="text" name="q" placeholder="Tìm kiếm..." autoComplete='off' />
                                             </form>
                                         </div>
                                     </div>

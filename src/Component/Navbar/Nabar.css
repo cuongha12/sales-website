@@ -165,26 +165,30 @@
 .dropdown-menus li:hover .dropdown-menuss {
     z-index: 1000;
     width: auto;
-   
+
     transition-delay: 0.4s;
     visibility: visible;
     opacity: 1;
     transition: .3s ease-in;
     transform: translateY(0px);
 }
+
 .search-bar {
     margin-top: 5px;
     display: inline-block;
 }
+
 .search-bar form {
     position: relative;
     border: 0;
 }
+
 .search-bar form input {
     margin-bottom: 0;
     padding-right: 30px;
     width: 100%;
 }
+
 .search-bar form input {
     border: 1px solid #ebebeb;
     padding: 12px;
@@ -198,6 +202,7 @@
     transition: all 0.4s ease-in-out;
     min-width: 270px;
 }
+
 .search-bar form:before {
     display: block;
     font-size: 16px;
@@ -210,11 +215,26 @@
     z-index: 99;
     color: #757575;
 }
+
 .pull-right {
     float: right;
 }
+
 .search-bar form input:focus {
     background: #fff;
     border-color: #222;
     color: #222;
+}
+
+.sticky {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background: #fff;
+    width: 100%;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 0 20px 1px #ddd;
 }
