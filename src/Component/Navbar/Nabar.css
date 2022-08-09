@@ -63,9 +63,8 @@
 }
 
 .active {
-    color: #28b241;
+    color: #28b241 !important;
 }
-
 .dropdown-menus {
     background: #ffffff;
     padding: 13px 15px;

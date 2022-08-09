@@ -7,6 +7,8 @@ import Login from './Page/Login/Login';
 import Blog from './Page/Blog/Blog';
 import Introduce from './Page/Introduce/Introduce';
 import Contact from './Page/Contact/Contact';
+import Test from './Page/Test/Test';
+import Form from './Page/Form/Form';
 function App() {
   return (
     <div className="App">
@@ -16,10 +18,12 @@ function App() {
             <Route index element={<Home />} />
             <Route path='shop' element={<SHop />} />
             <Route path='blog' element={<Blog />} />
-            <Route path='introduce' element={<Introduce/>} />
-            <Route path='contact' element={<Contact/>} />
+            <Route path='introduce' element={<Introduce />} />
+            <Route path='contact' element={<Contact />} />
           </Route>
-          <Route path='login' element={<Login />} >
+          <Route path='login' element={<Test/>} >
+            <Route index element={<Login/>}/>
+            <Route path='form' element={<Form/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,8 +1,11 @@
 import React, { useLayoutEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import "../Header/Header.component.css"
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [show, setShow] = useState(false)
+    const [menu, setMenu] = useState(false)
     useLayoutEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 120)
@@ -13,6 +16,7 @@ const Header = () => {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
+
     return (
         <>
             <header className='header bkg hidden-sm hidden-xs none'>
@@ -116,42 +120,92 @@ const Header = () => {
                     </div>
                 </div>
             </nav> */}
-            <div className={ scrolled ? ' stickys nones ' : 'headers nones'}>
-                <div className={'container'}>
-                    <div className='row top-header'>
-                        <div className='col-md-12 col-sm-12 col-xs-12 evo-header-mobile'>
-                            <button type="button" className="evo-flexitem evo-flexitem-fill navbar-toggle collapsed visible-sm visible-xs" id="trigger-mobile">
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <div className="logo evo-flexitem evo-flexitem-fill">
-                                <a href="/" class="logo-wrapper" >
-                                    <img src="https://hstatic.net/349/1000150349/1000203344/logo.png?v=28" className="img-responsive center-block" />
-                                </a>
+            <div className={scrolled ? 'stickys nones ' : "nones"}>
+                <div className=''>
+                    <div className={show ? 'evo-search-bar show-search ' : "evo-search-bar "}>
+                        <form className="has-validation-callback">
+                            <div className="input-group">
+                                <input type="text" name="query" className="form-control" placeholder="Bạn cần tìm gì hôm nay?" />
+                                <span className="input-group-btn">
+                                    <button className="btn btn-default" type="submit"><i className="fa fa-search"></i></button>
+                                </span>
                             </div>
-                            <div className="evo-flexitem evo-flexitem-fill visible-sm visible-xs">
-                                <div className="avatar-mobile">
-                                    <a title="Tài khoản">
-                                        <img className="avatar" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" />
+                        </form>
+                        <button className="site-header__search" title="Đóng tìm kiếm" onClick={() => setShow(false)}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div className={'headers nones'}>
+                    <div className={'container'}>
+                        <div className='row top-header'>
+                            <div className='col-md-12 col-sm-12 col-xs-12 evo-header-mobile'>
+                                <button type="button" className="evo-flexitem evo-flexitem-fill navbar-toggle collapsed visible-sm visible-xs" id="trigger-mobile" onClick={() => setMenu(!menu)}>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
+                                <div className="logo evo-flexitem evo-flexitem-fill">
+                                    <a href="/" className="logo-wrapper" >
+                                        <img src="https://hstatic.net/349/1000150349/1000203344/logo.png?v=28" className="img-responsive center-block" />
                                     </a>
-                                    <ul>
-                                        <li >
-                                            <a >Đăng nhập</a>
-                                        </li>
-                                        <li >
-                                            <a >Đăng ký</a>
-                                        </li>
-                                    </ul>
                                 </div>
-                                <a className="cart ">
-                                    <i className="fa fa-cart-arrow-down"></i>
-                                    <span className="count_item_pr">0</span>
-                                </a >
-                                <a className="site-header-search cart" rel="nofollow" title="Tìm kiếm">
-                                    <i className="fa fa-search" aria-hidden="true"></i>
-                                </a>
+                                <div className="evo-flexitem evo-flexitem-fill visible-sm visible-xs">
+                                    <div className="avatar-mobile">
+                                        <a title="Tài khoản">
+                                            <img className="avatar" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" />
+                                        </a>
+                                        <ul>
+                                            <li >
+                                                <a >Đăng nhập</a>
+                                            </li>
+                                            <li >
+                                                <a >Đăng ký</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a className="cart ">
+                                        <i className="fa fa-cart-arrow-down"></i>
+                                        <span className="count_item_pr">0</span>
+                                    </a >
+                                    <a className="site-header-search cart" rel="nofollow" title="Tìm kiếm" onClick={() => setShow(true)}>
+                                        <i className="fa fa-search" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={show ? "blur" : "end"} onClick={() => setShow(false)}>
+            </div>
+            <div className='nones'>
+                <div className={menu ? "blur" : "end"} onClick={() => setMenu(false)}>
+                </div>
+                <div className={menu ? 'container nav-evo-watch actives ' : 'container nav-evo-watch '}>
+                    <div className='row'>
+                        <div className='col-md-12 col-lg-12'>
+                            <ul id="nav" className='nav'>
+                                <li className="nav-item ">
+                                    <a className="nav-link active" >MENU</a>
+                                </li>
+                                <li className='nav-item has-childs'>
+                                    <NavLink to={'/'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Trang chủ</NavLink>
+                                </li>
+                                <li className='nav-item has-childs  '>
+                                    <NavLink to={'shop'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Sản phẩm
+                                    </NavLink>
+                                </li>
+                                <li className='nav-item has-childs'>
+                                    <NavLink to={'blog'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Blog</NavLink>
+                                </li>
+                                <li className='nav-item has-childs'>
+                                    <NavLink to={'introduce'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Giới thiệu</NavLink>
+                                </li>
+                                <li className='nav-item has-childs'>
+                                    <NavLink to={'contact'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Liên hệ</NavLink>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
