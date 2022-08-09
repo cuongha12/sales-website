@@ -64,6 +64,7 @@
 
 .active {
     color: #28b241 !important;
+    text-decoration: none;
 }
 .dropdown-menus {
     background: #ffffff;

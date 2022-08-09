@@ -151,7 +151,7 @@ const Header = () => {
                                     </a>
                                 </div>
                                 <div className="evo-flexitem evo-flexitem-fill visible-sm visible-xs">
-                                    <div className="avatar-mobile">
+                                    {/* <div className="avatar-mobile">
                                         <a title="Tài khoản">
                                             <img className="avatar" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" />
                                         </a>
@@ -163,7 +163,7 @@ const Header = () => {
                                                 <a >Đăng ký</a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> */}
                                     <a className="cart ">
                                         <i className="fa fa-cart-arrow-down"></i>
                                         <span className="count_item_pr">0</span>
@@ -187,7 +187,9 @@ const Header = () => {
                         <div className='col-md-12 col-lg-12'>
                             <ul id="nav" className='nav'>
                                 <li className="nav-item ">
-                                    <a className="nav-link active" >MENU</a>
+                                    <a className="nav-link " >
+                                        <i className="fa-solid fa-circle-user"></i>
+                                    </a>
                                 </li>
                                 <li className='nav-item has-childs'>
                                     <NavLink to={'/'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Trang chủ</NavLink>
@@ -205,6 +207,10 @@ const Header = () => {
                                 <li className='nav-item has-childs'>
                                     <NavLink to={'contact'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Liên hệ</NavLink>
                                 </li>
+                            </ul>
+                            <ul className='header-login'>
+                                <li><a className="reg"  title="Đăng ký">Đăng ký</a></li>
+                                <li><a className="log"  title="Đăng nhập">Đăng nhập</a></li>
                             </ul>
                         </div>
                     </div>
