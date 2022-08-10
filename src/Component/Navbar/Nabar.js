@@ -1,8 +1,10 @@
 import React, { useLayoutEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import "../Navbar/Nabar.css"
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [search, setSearch] = useState('')
+    let navigate = useNavigate()
     useLayoutEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 120)
@@ -13,12 +15,17 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
+    const handSearch = (event) => {
+        event.preventDefault()
+        navigate(`/${search}`)
+        setSearch('')
+    }
     return (
         <nav className={'navbar-main  navbar-default cl-pri none'}>
-            <div className={ scrolled ? ' sticky ' : '  container nav-wrapper check_nav'}>
+            <div className={scrolled ? ' sticky ' : '  container nav-wrapper check_nav'}>
                 <div className='row'>
                     <div className='col-lg-6'>
-                        <div className='navbar-collapse '>
+                        <div className='navbar-collapse nav-ba'>
                             <ul className=' navbar-navs '>
                                 <li>
                                     <NavLink to={'/'} className={({ isActive }) => (isActive ? 'link active' : 'link')}>
@@ -111,12 +118,14 @@ const Navbar = () => {
                     </div>
                     <div className='col-lg-6'>
                         <div className='hidden-xs pull-right right-menu'>
-                            <ul className="nav navbar-nav pull-right sm" data-smartmenus-id="16598097007690994">
+                            <ul className="nav navbar-nav pull-right sm">
                                 <li className="col-md-12">
                                     <div className="search-bar">
                                         <div className="">
-                                            <form action="">
-                                                <input type="text" name="q" placeholder="Tìm kiếm..." autoComplete='off' />
+                                            <form action="" onSubmit={
+                                                handSearch
+                                            }>
+                                                <input type="text" name="q" placeholder="Tìm kiếm..." autoComplete='off' value={search} onChange={(e) => setSearch(e.target.value)} />
                                             </form>
                                         </div>
                                     </div>

@@ -168,7 +168,7 @@ const Header = () => {
                                         <i className="fa fa-cart-arrow-down"></i>
                                         <span className="count_item_pr">0</span>
                                     </a >
-                                    <a className="site-header-search cart" rel="nofollow" title="Tìm kiếm" onClick={() => setShow(true)}>
+                                    <a className="site-header-search cart"  title="Tìm kiếm" onClick={() => setShow(true)}>
                                         <i className="fa fa-search" aria-hidden="true"></i>
                                     </a>
                                 </div>

@@ -1,9 +1,25 @@
-import React, { useState } from 'react'
+import { type } from '@testing-library/user-event/dist/type'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import "../Shop/Shop.css"
 const SHop = () => {
   const [show, setShow] = useState(false)
   const [menu, setMenu] = useState(false)
   const [menus, setMenus] = useState(false)
+  const [product, setProduct] = useState([])
+  const [current, setCurrent] = useState(1)
+  const [page, setPage] = useState(false)
+  const [sort, setSort] = useState('')
+  const [item, setItem] = useState([])
+  const number = [1, 2, 3]
+  const Product = async () => {
+    return await axios.get('http://localhost:3000/product?_page&_limit=12')
+      .then(res => setProduct(res.data))
+  }
+  useEffect(() => {
+    Product()
+  }, [])
+
   const mok = [
     {
       id: 1,
@@ -103,7 +119,35 @@ const SHop = () => {
       title: "best-selling"
     },
   ]
-  console.log(sortOptions);
+  const handClick = async (id) => {
+    return await axios.get(`http://localhost:3000/product?_page=${id}&_limit=12`)
+      .then(res => {
+        setProduct(res.data)
+        setCurrent(id)
+      })
+  }
+  const handFilter = async (name) => {
+    if (name !== 'all') {
+      return await axios.get(`http://localhost:3000/product?other=${name}&_order=asc`)
+        .then(res => {
+          setProduct(res.data)
+          setPage(true)
+          setShow(false)
+          setMenu(false)
+          setMenus(false)
+        })
+    } else {
+      Product()
+      setCurrent(1)
+      setPage(false)
+    }
+  }
+  const handSort = async (e) => {
+    let values = e.target.value
+    setSort(values)
+    console.log(sort);
+  }
+  
   return (
     <div>
       <div className="wrap-breadcrumb">
@@ -119,108 +163,169 @@ const SHop = () => {
           </div>
         </div>
       </div>
-      <section className='clearfix container'>
+      <section className='clearfix container shop-bottom'>
         <div className='row'>
-          <div className='content-pages collection-page'>
-            <div className='wrapper-sticky'>
-              <div className=' col-sm-12 col-xs-12 leftsidebar-col'>
-                <div className='group_sidebar'>
-                  <div className='list-group navbar-inner '>
-                    <div className="mega-left-title btn-navbar title-hidden-sm">
-                      <h3 className="sb-title">Danh mục </h3>
-                    </div>
-                    <ul className='nav navs sidebar menu'>
-                      <li className='item has-sub first'>
-                        <a className={show ? "active" : ""}>
-                          <span className="lbl">Rau củ quả</span>
-                          <span className="sign drop-down collapsed" onClick={() => setShow(!show)}>
-                          </span>
-                        </a>
-                        <ul className={show ? " children in-child " : ' children '}>
-                          {mok.filter(e => e.created_date.getDay() === new Date(2022, 1, 23).getDay()).map((x) => (
-                            <li className="first" key={x.id}>
-                              <a >
-                                <span>{x.name}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                      <li className='item has-sub  first'>
-                        <a className={menu ? "active" : ""}>
-                          <span className="lbl">Thực phẩm tươi sống</span>
-                          <span className="sign drop-down collapsed" onClick={() => setMenu(!menu)}>
-                          </span>
-                        </a>
-                        <ul className={menu ? " children  in-child" : ' children '}>
-                          {mok.filter(e => e.created_date.getDay() === new Date(2022, 8, 25).getDay()).map((x) => (
-                            <li className="first" key={x.id}>
-                              <a  >
-                                <span>{x.name}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                      <li className='item has-sub  first'>
-                        <a className={menus ? "active" : ""}>
-                          <span className="lbl">Thực phẩm khô</span>
-                          <span className="sign drop-down collapsed" onClick={() => setMenus(!menus)}>
-                          </span>
-                        </a>
-                        <ul className={menus ? " children in-child  " : ' children '}>
-                          {mok.filter(e => e.created_date.getDay() === new Date(2022, 4, 27).getDay()).map((x) => (
-                            <li className="first" key={x.id}>
-                              <a >
-                                <span>{x.name}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                      <li className='item has-sub  first'>
-                        <a>
-                          <span className="lbl">Thực phẩm bổ dưỡng</span>
-                        </a>
-                      </li>
-                      <li className='item has-sub  first'>
-                        <a>
-                          <span className="lbl">Thực phẩm chế biến</span>
-                        </a>
-                      </li>
-                    </ul>
+
+          <div className='wrapper-sticky col-lg-4'>
+            <div className=' col-sm-12 col-xs-12 leftsidebar-col'>
+              <div className='group_sidebar'>
+                <div className='list-group navbar-inner '>
+                  <div className="mega-left-title btn-navbar title-hidden-sm">
+                    <h3 className="sb-title">Danh mục </h3>
                   </div>
-                  <div className="list-group_l banner-left hidden-sm hidden-xs">
-                    <a >
-                      <img src="//hstatic.net/349/1000150349/1000203344/left_image_ad.jpg?v=28" />
-                    </a>
-                  </div>
+                  <ul className='nav navs sidebar menu'>
+                    <li className='item has-sub first'>
+                      <a className={""} onClick={() => handFilter('all')}>
+                        <span className="lbl">Tất cả sản phẩm</span>
+                      </a>
+                    </li>
+                    <li className='item has-sub first'>
+                      <a className={show ? "active" : ""}>
+                        <span className="lbl">Rau củ quả</span>
+                        <span className="sign drop-down collapsed" onClick={() => setShow(!show)}>
+                        </span>
+                      </a>
+                      <ul className={show ? " children in-child " : ' children '}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 1, 23).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a className={menu ? "active" : ""}>
+                        <span className="lbl">Thực phẩm tươi sống</span>
+                        <span className="sign drop-down collapsed" onClick={() => setMenu(!menu)}>
+                        </span>
+                      </a>
+                      <ul className={menu ? " children  in-child" : ' children '}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 8, 25).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a className={menus ? "active" : ""}>
+                        <span className="lbl">Thực phẩm khô</span>
+                        <span className="sign drop-down collapsed" onClick={() => setMenus(!menus)}>
+                        </span>
+                      </a>
+                      <ul className={menus ? " children in-child  " : ' children '}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 4, 27).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a>
+                        <span className="lbl">Thực phẩm bổ dưỡng</span>
+                      </a>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a>
+                        <span className="lbl">Thực phẩm chế biến</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="list-group_l banner-left hidden-sm hidden-xs">
+                  <a >
+                    <img src="//hstatic.net/349/1000150349/1000203344/left_image_ad.jpg?v=28" />
+                  </a>
                 </div>
               </div>
             </div>
-            <div className='content-col  col-lg-12' >
-              <div className='row'>
-                <div className='main-content'>
-                  <div className=' hidden-sm hidden-xs col-lg-12'>
-                    <div className='sort-collection'>
-                      <div className='row'>
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                          <h1>
-                            Tất cả sản phẩm
-                          </h1>
+          </div>
+          <div className='content-col  col-lg-8' >
+            <div className='row'>
+              <div className='main-content'>
+                <div className=' hidden-sm hidden-xs col-lg-12'>
+                  <div className='sort-collection'>
+                    <div className='row'>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h1>
+                          Tất cả sản phẩm
+                        </h1>
+                      </div>
+                      <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+                        <div className='browse-tags'>
+                          <span>Sắp xếp theo:</span>
+                          <span className='custom-dropdown custom-dropdown--white'>
+                            <select className="sort-by custom-dropdown__select custom-dropdown__select--white" onChange={handSort}
+                              value={sort}>
+                              {sortOptions.map((e) => (
+                                <option key={e.id} value={e.title} >{e.name}</option>
+                              ))}
+                            </select>
+                          </span>
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
-                          <div className='browse-tags'>
-                            <span>Sắp xếp theo:</span>
-                            <span className='custom-dropdown custom-dropdown--white'>
-                              <select className="sort-by custom-dropdown__select custom-dropdown__select--white">
-                                {sortOptions.map((e)=>(
-                                  <option key={e.id} value={e.title}>{e.name}</option>
-                                ))}
-                              </select>
-                            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='col-md-12 col-sm-12 col-xs-12 content-product-list'>
+                  <div className='row product-list'>
+                    {
+                      product.filter((x) => x.category === "shop").map((e) => (
+                        <div className='col-md-4  col-sm-6 col-xs-12 pro-loop' key={e.id}>
+                          <div className='product-block product-resize fixheight'>
+                            <div className='product-img image-resize view view-third'>
+                              <div className={e.sale ? "product-sale" : 'sale'}>
+                                <span><label className="sale-lb">- </label>{e.sales}%</span>
+                              </div>
+                              <a>
+                                <img className='class="first-image  has-img"' src={e.image} />
+                                <img className="second-image" src={e.img}></img>
+                              </a>
+                              <div className="actionss">
+                                <div className="btn-cart-products">
+                                  <a >
+                                    <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                  </a>
+                                </div>
+                                <div className="view-details">
+                                  <a href="/products/xuong-ong-heo-vissan" className="view-detail">
+                                    <span><i className="fa fa-clone"> </i></span>
+                                  </a>
+                                </div>
+                                <div className="btn-quickview-products">
+                                  <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="product-detail clearfix">
+                              <h3 className="pro-name"><a title="Xương ống heo Vissan">{e.title} </a></h3>
+                              <div className="pro-prices">
+                                <p className="pro-price">{e.price}₫</p>
+                                <p className="pro-price-del text-left">
+                                  <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                      ))
+                    }
+                  </div>
+                </div>
+                <div className={page ? "mok " : 'col-md-12 col-sm-12 col-xs-12 '}>
+                  <div className='clearfix'>
+                    <div id='pagination'>
+                      <div className="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-center">
+                        {number.map((e) => (
+                          <a className={e === current ? "page-node currents" : "page-node"} key={e} onClick={() => handClick(e)}>{e}</a>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -228,6 +333,7 @@ const SHop = () => {
               </div>
             </div>
           </div>
+
         </div>
       </section>
     </div>
