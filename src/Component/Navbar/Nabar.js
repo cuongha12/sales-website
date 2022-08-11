@@ -15,8 +15,8 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
-    const handSearch = (event) => {
-        event.preventDefault()
+    const handSearch = () => {
+       
         navigate(`/${search}`)
         setSearch('')
     }
