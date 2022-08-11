@@ -11,6 +11,8 @@ const SHop = () => {
   const [page, setPage] = useState(false)
   const [sort, setSort] = useState('')
   const [item, setItem] = useState([])
+  const [category, setCategory] = useState(false)
+
   const number = [1, 2, 3]
   const Product = async () => {
     return await axios.get('http://localhost:3000/product?_page&_limit=12')
@@ -80,8 +82,8 @@ const SHop = () => {
   const sortOptions = [
     {
       id: 1,
-      name: "Sản phẩm nổi bật",
-      title: "manual"
+      name: "Mới nhất",
+      title: "created-descending"
     },
     {
       id: 2,
@@ -110,8 +112,8 @@ const SHop = () => {
     },
     {
       id: 7,
-      name: "Mới nhất",
-      title: "created-descending"
+      name: "Sản phẩm nổi bật",
+      title: "manual"
     },
     {
       id: 8,
@@ -147,9 +149,9 @@ const SHop = () => {
     setSort(values)
     console.log(sort);
   }
-  
+
   return (
-    <div>
+    <div className='shop'>
       <div className="wrap-breadcrumb">
         <div className="clearfix container">
           <div className="row main-header">
@@ -165,7 +167,114 @@ const SHop = () => {
       </div>
       <section className='clearfix container shop-bottom'>
         <div className='row'>
+          <div className='col-lg-12 visible-sm visible-xs title-shop'>
+            <div className="visible-sm visible-xs">
+              <h1 className="title-sm">
+                Tất cả sản phẩm
+              </h1>
+            </div>
+            <div className='filter-by-wrapper'>
+              <div className='filter-by'>
+                <div className='sort-filter-option navbar-inactive'>
+                  <div className='filterBtn txtLeft btn-navbar-collection'>
+                    <span className="list-coll" onClick={() => setCategory(!category)}>
+                      <i className="fa fa-server" ></i>
+                      Danh mục
+                    </span>
+                  </div>
+                </div>
+                <div className='sort-filter-option js-promoteTooltip'>
+                  <div className='filterBtn txtLeft showOverlay'>
+                    <i className="fa fa-sort-alpha-asc" ></i>
+                    <span className='custom-dropdown custom-dropdown--white'>
+                      <select className='sort-by custom-dropdown__select custom-dropdown__select--white'>
+                        {
+                          sortOptions.map((e) => (
+                            <option value={e.title} key={e.id}>{e.name}</option>
+                          ))
+                        }
+                      </select>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={category ? 'wrapper-shop ' : " mok "}>
+            <div className='col-md-12 col-sm-12 col-xs-12 leftsidebar-col'>
+              <div className='group_sidebar'>
+                <div className='list-group navbar-inner '>
+                  <ul className='nav navs sidebar menu'>
+                    <li className='item has-sub first'>
+                      <a className={""} onClick={() => handFilter('all')}>
+                        <span className="lbl">Tất cả sản phẩm</span>
+                      </a>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a className={show ? "active" : ""} onClick={() => setShow(!show)} >
+                        <span className="lbl">Rau củ quả</span>
+                        <span className="sign drop-down collapsed">
+                        </span>
+                      </a>
+                      <ul className={show ? " children in-child " : "children"}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 1, 23).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a className={menu ? "active" : ""} onClick={() => setShow(!menu)}>
+                        <span className="lbl">Thực phẩm tươi sống</span>
+                        <span className="sign drop-down collapsed">
+                        </span>
+                      </a>
+                      <ul className={menu ? " children  in-child" : "children"}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 8, 25).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a className={menus ? "active" : ""} onClick={() => setShow(!menus)}>
+                        <span className="lbl">Thực phẩm khô</span>
+                        <span className="sign drop-down collapsed">
+                        </span>
+                      </a>
+                      <ul className={menus ? " children  in-child" : "children"}>
+                        {mok.filter(e => e.created_date.getDay() === new Date(2022, 4, 27).getDay()).map((x) => (
+                          <li className="first" key={x.id}>
+                            <a onClick={() => handFilter(x.other)}>
+                              <span>{x.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className='item has-sub  first'>
+                      <a >
+                        <span className="lbl">Thực phẩm bổ dưỡng</span>
 
+                      </a>
+                    </li>
+                    <li className='item has-sub first'>
+                      <a >
+                        <span className="lbl">Thực phẩm chế biến</span>
+
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className='wrapper-sticky col-lg-4'>
             <div className=' col-sm-12 col-xs-12 leftsidebar-col'>
               <div className='group_sidebar'>
@@ -322,7 +431,7 @@ const SHop = () => {
                 <div className={page ? "mok " : 'col-md-12 col-sm-12 col-xs-12 '}>
                   <div className='clearfix'>
                     <div id='pagination'>
-                      <div className="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-center">
+                      <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 text-center">
                         {number.map((e) => (
                           <a className={e === current ? "page-node currents" : "page-node"} key={e} onClick={() => handClick(e)}>{e}</a>
                         ))}
