@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import '../ProductHome/ProductHome.css'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const ProductHome = () => {
     const [product, setProduct] = useState([])
     const Product = async () => {
@@ -35,7 +35,7 @@ const ProductHome = () => {
                             <div className='row content-product-list products-resize'>
                                 {
                                     product.filter((e) => e.status === "outstanding").map((e) => (
-                                        <div key={e.id} className="col-md-3 col-sm-6 col-xs-6 pro-loop" >
+                                        <div key={e.id} className="col-md-4 col-sm-6 col-xs-6 pro-loop col-lg-3" >
                                             <div className='product-block product-resize fixheight' style={{ height: '336px' }}>
                                                 <div className='product-img image-resize view view-third' style={{ height: '261px' }}>
                                                     <div className={e.sale ? "product-sale" : 'sale'}>
@@ -88,7 +88,7 @@ const ProductHome = () => {
                             </div>
                             <div className='row'>
                                 <div className='col-lg-12 col-sm-12 col-xs-12  pull-center center'>
-                                    <a className="btn btn-readmore" >Xem thêm</a>
+                                    <NavLink className={'btn btn-readmore'} to={'/shop'}>Xem thêm</NavLink>
                                 </div>
                             </div>
                             <div className='row'>
@@ -121,7 +121,7 @@ const ProductHome = () => {
                             <div className='row content-product-list products-resize'>
                                 {
                                     product.filter((e) => e.status === "new").map((e) => (
-                                        <div key={e.id} className="col-md-3 col-sm-6 col-xs-6 pro-loop" >
+                                        <div key={e.id} className="col-md-4 col-sm-6 col-xs-6 pro-loop col-lg-3" >
                                             <div className='product-block product-resize fixheight' style={{ height: '336px' }}>
                                                 <div className='product-img image-resize view view-third' style={{ height: '261px' }}>
                                                     <div className={e.sale ? "product-sale" : 'sale'}>
@@ -174,7 +174,7 @@ const ProductHome = () => {
                             </div>
                             <div className='row'>
                                 <div className='col-lg-12 col-sm-12 col-xs-12  pull-center center'>
-                                    <a className="btn btn-readmore" >Xem thêm</a>
+                                    <NavLink className={'btn btn-readmore'} to={'/shop'}>Xem thêm</NavLink>
                                 </div>
                             </div>
                             <div className='banner-bottom'>

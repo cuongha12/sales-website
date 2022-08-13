@@ -1,21 +1,29 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import '../Detail/detail.css'
 import { Image } from 'antd';
 import { Rate } from 'antd';
 const Detail = () => {
     const { item } = useParams()
     const [product, setProduct] = useState([])
+    const [previous, setPrevious] = useState(0)
+    const [products, setProducts] = useState([])
     const Item = async () => {
         return await axios.get(`http://localhost:3000/product/${item}`)
             .then(res => setProduct(res.data))
     }
+    const Items = async () => {
+        return await axios.get('http://localhost:3000/product')
+            .then(res => setProducts(res.data))
+    }
     useEffect(() => {
         Item()
+        Items()
     }, [])
+    let navigate = useNavigate()
     return (
-        <div style={{ background: '#f5f6f7' }}>
+        <div style={{ background: '#f5f6f7', height: 'auto' }}>
             <section className='inner-section'>
                 <div className='container'>
                     <div className='row'>
@@ -119,6 +127,136 @@ const Detail = () => {
                                     </a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <section className='inner-section tu'>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-lg-12'>
+                            <div className='nav nav-tabs'>
+                                <li><a className={previous === 0 ? 'tab-link active ' : "tab-link"} onClick={() => setPrevious(0)}>descriptions</a></li>
+                                <li><a className={previous === 1 ? 'tab-link active ' : "tab-link"} onClick={() => setPrevious(1)}>Specifications</a></li>
+                                <li><a className={previous === 2 ? 'tab-link active ' : "tab-link"} onClick={() => setPrevious(2)}>reviews (2)</a></li>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={previous === 0 ? 'tab-pane  show ' : "tab-pane"}>
+                        <div className='row'>
+                            <div className='col-lg-6'>
+                                <div className='product-details-frame'>
+                                    <div className="tab-descrip">
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                            Recusandae delectus natus quasi aperiam.
+                                            Nulla perspiciatis ullam ipsa, magni animi eligendi quis mollitia dolor
+                                            omnis alias ut aspernatur est voluptatem illo totam iste consequatur vitae laborum ipsam facilis! Ipsa,
+                                            voluptatum neque dolor facere autem maiores pariatur, eveniet veritatis vero iure obcaecati
+                                        </p>
+                                        <ul>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                                            <li>labore possimus architecto, saepe nobis ex mollitia</li>
+                                            <li>mollitia soluta magni placeat. Eaque sit praesentium</li>
+                                            <li>distinctio ab a exercitationem officiis labore possimus</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-lg-6'>
+                                <div className='product-details-frame'>
+                                    <div className='tab-descrip'>
+                                        <img src='https://mironmahmud.com/greeny/assets/ltr/images/video.jpg' />
+                                        <a title="Product Video" className="venobox fas fa-play vbox-item" ></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={previous === 1 ? 'tab-pane  show ' : "tab-pane"}>
+                        <div className='row'>
+                            <div className='col-lg-12'>
+                                <div className='product-details-frame'>
+                                    <table className='table table-bordered'>
+                                        <tbody>
+                                            <tr><th scope="row">Product code</th><td>SKU: 101783</td></tr>
+                                            <tr><th scope="row">Weight</th><td>1kg, 2kg</td></tr>
+                                            <tr><th scope="row">Styles</th><td>@Girly</td></tr>
+                                            <tr><th scope="row">Properties</th><td>Short Dress</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={previous === 2 ? 'tab-pane  show ' : "tab-pane"}>
+                        <div className='row'>
+                            <div className='col-lg-12'>
+                                <div className='product-details-frame'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className='inner-section'>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col'>
+                            <div className="section-heading">
+                                <h2>Các mặt hàng này có liên quan</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row content-product-list products-resize'>
+                        {
+                            products.filter((e) => e.status === "outstanding").map((e) => (
+                                <div key={e.id} className="col-md-4 col-sm-6 col-xs-6 pro-loop col-lg-3" >
+                                    <div className='product-block product-resize fixheight' style={{ height: '336px' }}>
+                                        <div className='product-img image-resize view view-third' style={{ height: '261px' }}>
+                                            <div className={e.sale ? "product-sale" : 'sale'}>
+                                                <span><label className="sale-lb">- </label>{e.sales}%</span>
+                                            </div>
+                                            <a >
+                                                <img src={e.image} alt={e.title} className="first-image  has-img" />
+                                                <img src={e.img} alt={e.title} className="second-image" />
+                                            </a>
+                                            <div className='actionss'>
+                                                <div className='btn-cart-products'>
+                                                    <a >
+                                                        <i className="fa fa-shopping-bag"></i>
+                                                    </a>
+                                                </div>
+                                                <div className='view-details'>
+                                                    <a className='view-detail' >
+                                                        <span><i className="fa fa-clone"></i></span>
+                                                    </a>
+                                                </div>
+                                                <div className="btn-quickview-products">
+                                                    <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='product-detail clearfix'>
+                                            <h3 className="pro-name">
+                                                <a >{e.title} </a>
+                                            </h3>
+                                            <div className="pro-prices">
+                                                <p className="pro-price">{e.price}₫</p>
+                                                <p className="pro-price-del text-left">
+                                                    <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div className='row'>
+                        <div className='col-lg-12 col-sm-12 col-xs-12  pull-center center'>
+                            <NavLink className={'btn btn-readmore'} to={'/shop'}>Xem thêm</NavLink>
                         </div>
                     </div>
                 </div>
