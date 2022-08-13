@@ -1,6 +1,7 @@
 import { type } from '@testing-library/user-event/dist/type'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import "../Shop/Shop.css"
 const SHop = () => {
   const [show, setShow] = useState(false)
@@ -149,7 +150,10 @@ const SHop = () => {
     setSort(values)
     console.log(sort);
   }
-
+  let navigate = useNavigate()
+  const handDetail = (item) => {
+    navigate(`/detail/${item}`)
+  }
   return (
     <div className='shop'>
       <div className="wrap-breadcrumb">
@@ -393,7 +397,10 @@ const SHop = () => {
                               <div className={e.sale ? "product-sale" : 'sale'}>
                                 <span><label className="sale-lb">- </label>{e.sales}%</span>
                               </div>
-                              <a>
+                              <a onClick={(event) => {
+                                event.preventDefault()
+                                handDetail(e.id)
+                              }}>
                                 <img className='class="first-image  has-img"' src={e.image} />
                                 <img className="second-image" src={e.img}></img>
                               </a>
@@ -404,7 +411,10 @@ const SHop = () => {
                                   </a>
                                 </div>
                                 <div className="view-details">
-                                  <a href="/products/xuong-ong-heo-vissan" className="view-detail">
+                                  <a href="/products/xuong-ong-heo-vissan" className="view-detail" onClick={(event) => {
+                                    event.preventDefault()
+                                    handDetail(e.id)
+                                  }}>
                                     <span><i className="fa fa-clone"> </i></span>
                                   </a>
                                 </div>

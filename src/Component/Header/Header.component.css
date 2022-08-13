@@ -607,7 +607,7 @@ a {
 
 @media only screen and (max-width: 375px) {
     .evo-search-bar .site-header__search {
-        right: 30px;
+        right: 8px;
     }
 
     .avatar {

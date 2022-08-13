@@ -16,8 +16,7 @@ const Navbar = () => {
         }
     }, [])
     const handSearch = () => {
-       
-        navigate(`/${search}`)
+        navigate(`search/${search}`)
         setSearch('')
     }
     return (

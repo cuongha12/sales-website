@@ -36,7 +36,7 @@ const Searchs = () => {
                         <div className="content-page" id="search">
                             <div className="col-md-12  col-xs-12 col-sm-12 col-lg-12">
                                 <span className="subtext">
-                                    Kết quả tìm kiếm cho  <strong>"{id}"</strong>.
+                                    Kết quả tìm kiếm cho <strong>"{id}"</strong>.
                                 </span>
                             </div>
                         </div>
@@ -44,8 +44,9 @@ const Searchs = () => {
                 </div>
             </section>
             <div className='col-md-12 col-sm-12 col-xs-12 content-product-list col-lg-12 search-product'>
-                <div className='row product-list'>
-                    {/* {
+                <div className='container'>
+                    <div className='row product-list'>
+                        {/* {
                         product.filter((x) =>{return x.category === "shop" && x.title.toLowerCase().includes(id.toLowerCase())}).map((e) => (
                             <div className='col-md-4  col-sm-6 col-xs-12 pro-loop col-lg-3' key={e.id}>
                                 <div className='product-block product-resize fixheight'>
@@ -87,47 +88,48 @@ const Searchs = () => {
                         ))
                         
                     } */}
-                    {
-                        product.filter((x) => { return x.category === "shop" && x.title.toLowerCase() }).map((e) => (
-                            <div className='col-md-4  col-sm-6 col-xs-12 pro-loop col-lg-3' key={e.id}>
-                                <div className='product-block product-resize fixheight'>
-                                    <div className='product-img image-resize view view-third'>
-                                        <div className={e.sale ? "product-sale" : 'sale'}>
-                                            <span><label className="sale-lb">- </label>{e.sales}%</span>
+                        {
+                            product.length !== 0 ? (product.filter((x) => { return x.category === "shop" && x.title.toLowerCase() }).map((e) => (
+                                <div className='col-md-4  col-sm-6 col-xs-12 pro-loop col-lg-3' key={e.id}>
+                                    <div className='product-block product-resize fixheight'>
+                                        <div className='product-img image-resize view view-third'>
+                                            <div className={e.sale ? "product-sale" : 'sale'}>
+                                                <span><label className="sale-lb">- </label>{e.sales}%</span>
+                                            </div>
+                                            <a>
+                                                <img className='class="first-image  has-img"' src={e.image} />
+                                                <img className="second-image" src={e.img}></img>
+                                            </a>
+                                            <div className="actionss">
+                                                <div className="btn-cart-products">
+                                                    <a >
+                                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <div className="view-details">
+                                                    <a href="/products/xuong-ong-heo-vissan" className="view-detail">
+                                                        <span><i className="fa fa-clone"> </i></span>
+                                                    </a>
+                                                </div>
+                                                <div className="btn-quickview-products">
+                                                    <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <a>
-                                            <img className='class="first-image  has-img"' src={e.image} />
-                                            <img className="second-image" src={e.img}></img>
-                                        </a>
-                                        <div className="actionss">
-                                            <div className="btn-cart-products">
-                                                <a >
-                                                    <i className="fa fa-shopping-bag" aria-hidden="true"></i>
-                                                </a>
+                                        <div className="product-detail clearfix">
+                                            <h3 className="pro-name"><a title="Xương ống heo Vissan">{e.title} </a></h3>
+                                            <div className="pro-prices">
+                                                <p className="pro-price">{e.price}₫</p>
+                                                <p className="pro-price-del text-left">
+                                                    <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
+                                                </p>
                                             </div>
-                                            <div className="view-details">
-                                                <a href="/products/xuong-ong-heo-vissan" className="view-detail">
-                                                    <span><i className="fa fa-clone"> </i></span>
-                                                </a>
-                                            </div>
-                                            <div className="btn-quickview-products">
-                                                <a className="quickview" ><i className="fa fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="product-detail clearfix">
-                                        <h3 className="pro-name"><a title="Xương ống heo Vissan">{e.title} </a></h3>
-                                        <div className="pro-prices">
-                                            <p className="pro-price">{e.price}₫</p>
-                                            <p className="pro-price-del text-left">
-                                                <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    }
+                            ))) : (<div><h1>Không tìm thấy sản phẩm</h1></div>)
+                        }
+                    </div>
                 </div>
             </div>
         </div>

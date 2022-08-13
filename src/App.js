@@ -10,6 +10,8 @@ import Contact from './Page/Contact/Contact';
 import Test from './Page/Test/Test';
 import Form from './Page/Form/Form';
 import Searchs from './Page/Search/Search';
+import Detail from './Page/Detail/Detail';
+import 'antd/dist/antd.css'
 function App() {
   return (
     <div className="App">
@@ -21,7 +23,9 @@ function App() {
             <Route path='blog' element={<Blog />} />
             <Route path='introduce' element={<Introduce />} />
             <Route path='contact' element={<Contact />} />
-            <Route path=':id' element={<Searchs/>}/>
+            <Route path='search/:id' element={<Searchs/>}/>
+            <Route path='detail/:item' element={<Detail/>}/>
+            <Route path='shop/detail/:item' element={<Detail/>}/>
           </Route>
           <Route path='login' element={<Test/>} >
             <Route index element={<Login/>}/>

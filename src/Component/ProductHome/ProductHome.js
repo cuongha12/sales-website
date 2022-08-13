@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import '../ProductHome/ProductHome.css'
+import { useNavigate } from 'react-router-dom';
 const ProductHome = () => {
     const [product, setProduct] = useState([])
     const Product = async () => {
@@ -10,12 +11,15 @@ const ProductHome = () => {
     useEffect(() => {
         Product()
     }, [])
-
+    let navigate = useNavigate()
+    const handDeatail = (item) => {
+        navigate(`detail/${item}`)
+    }
     return (
         <section className='clearfix container'>
             <div className='row'>
                 <div className='col-md-12 col-sm-12 col-xs-12'>
-                    <div className='main-content'>
+                    <div className=''>
                         <div className='product-list clearfix'>
                             <div className='row'>
                                 <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
@@ -37,7 +41,10 @@ const ProductHome = () => {
                                                     <div className={e.sale ? "product-sale" : 'sale'}>
                                                         <span><label className="sale-lb">- </label>{e.sales}%</span>
                                                     </div>
-                                                    <a>
+                                                    <a onClick={(event) => {
+                                                        event.preventDefault()
+                                                        handDeatail(e.id)
+                                                    }}>
                                                         <img src={e.image} alt={e.title} className="first-image  has-img" />
                                                         <img src={e.img} alt={e.title} className="second-image" />
                                                     </a>
@@ -48,12 +55,18 @@ const ProductHome = () => {
                                                             </a>
                                                         </div>
                                                         <div className='view-details'>
-                                                            <a className='view-detail'>
+                                                            <a className='view-detail' onClick={(event) => {
+                                                                event.preventDefault()
+                                                                handDeatail(e.id)
+                                                            }}>
                                                                 <span><i className="fa fa-clone"></i></span>
                                                             </a>
                                                         </div>
                                                         <div className="btn-quickview-products">
-                                                            <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                                            <a className="quickview" onClick={(event) => {
+                                                                event.preventDefault()
+                                                                handDeatail(e.id)
+                                                            }}><i className="fa fa-eye"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -114,7 +127,10 @@ const ProductHome = () => {
                                                     <div className={e.sale ? "product-sale" : 'sale'}>
                                                         <span><label className="sale-lb">- </label>{e.sales}%</span>
                                                     </div>
-                                                    <a>
+                                                    <a onClick={(event) => {
+                                                        event.preventDefault()
+                                                        handDeatail(e.id)
+                                                    }}>
                                                         <img src={e.image} alt={e.title} className="first-image  has-img" />
                                                         <img src={e.img} alt={e.title} className="second-image" />
                                                     </a>
@@ -125,12 +141,18 @@ const ProductHome = () => {
                                                             </a>
                                                         </div>
                                                         <div className='view-details'>
-                                                            <a className='view-detail'>
+                                                            <a className='view-detail' onClick={(event) => {
+                                                                event.preventDefault()
+                                                                handDeatail(e.id)
+                                                            }}>
                                                                 <span><i className="fa fa-clone"></i></span>
                                                             </a>
                                                         </div>
                                                         <div className="btn-quickview-products">
-                                                            <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                                            <a className="quickview" onClick={(event) => {
+                                                                event.preventDefault()
+                                                                handDeatail(e.id)
+                                                            }}><i className="fa fa-eye"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,7 +184,7 @@ const ProductHome = () => {
                                             <div className='col-xs-12 col-sm-6 home-category-item-2' key={e.id}>
                                                 <div className='block-home-category'>
                                                     <a>
-                                                        <img src={e.image} alt={e.title}/>
+                                                        <img src={e.image} alt={e.title} />
                                                     </a>
                                                 </div>
                                             </div>

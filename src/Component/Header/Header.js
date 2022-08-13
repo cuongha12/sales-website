@@ -1,11 +1,12 @@
 import React, { useLayoutEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "../Header/Header.component.css"
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [show, setShow] = useState(false)
     const [menu, setMenu] = useState(false)
+    const [search, setSearch] = useState("")
     useLayoutEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 120)
@@ -16,7 +17,11 @@ const Header = () => {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
-
+    let navigate = useNavigate()
+    const handSearch = () => {
+        navigate(`search/${search}`)
+        setSearch('')
+    }
     return (
         <>
             <header className='header bkg hidden-sm hidden-xs none'>
@@ -123,9 +128,9 @@ const Header = () => {
             <div className={scrolled ? 'stickys nones ' : "nones"}>
                 <div className=''>
                     <div className={show ? 'evo-search-bar show-search ' : "evo-search-bar "}>
-                        <form className="has-validation-callback">
+                        <form className="has-validation-callback" onSubmit={handSearch}>
                             <div className="input-group">
-                                <input type="text" name="query" className="form-control" placeholder="Bạn cần tìm gì hôm nay?" />
+                                <input type="text" name="query" className="form-control" placeholder="Bạn cần tìm gì hôm nay?" value={search} onChange={(e) => setSearch(e.target.value)} />
                                 <span className="input-group-btn">
                                     <button className="btn btn-default" type="submit"><i className="fa fa-search"></i></button>
                                 </span>
@@ -168,7 +173,7 @@ const Header = () => {
                                         <i className="fa fa-cart-arrow-down"></i>
                                         <span className="count_item_pr">0</span>
                                     </a >
-                                    <a className="site-header-search cart"  title="Tìm kiếm" onClick={() => setShow(true)}>
+                                    <a className="site-header-search cart" title="Tìm kiếm" onClick={() => setShow(true)}>
                                         <i className="fa fa-search" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -209,8 +214,8 @@ const Header = () => {
                                 </li>
                             </ul>
                             <ul className='header-login'>
-                                <li><a className="reg"  title="Đăng ký">Đăng ký</a></li>
-                                <li><a className="log"  title="Đăng nhập">Đăng nhập</a></li>
+                                <li><a className="reg" title="Đăng ký">Đăng ký</a></li>
+                                <li><a className="log" title="Đăng nhập">Đăng nhập</a></li>
                             </ul>
                         </div>
                     </div>
