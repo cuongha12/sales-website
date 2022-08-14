@@ -25,7 +25,6 @@ function App() {
             <Route path='contact' element={<Contact />} />
             <Route path='search/:id' element={<Searchs/>}/>
             <Route path='detail/:item' element={<Detail/>}/>
-            <Route path='shop/detail/:item' element={<Detail/>}/>
           </Route>
           <Route path='login' element={<Test/>} >
             <Route index element={<Login/>}/>
