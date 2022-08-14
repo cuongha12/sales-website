@@ -22,6 +22,9 @@ const Detail = () => {
         Items()
     }, [])
     let navigate = useNavigate()
+    const handDetail = (item) => {
+        navigate(`/detail/${item}`)
+    }
     return (
         <div style={{ background: '#f5f6f7', height: 'auto' }}>
             <section className='inner-section'>
@@ -218,7 +221,10 @@ const Detail = () => {
                                             <div className={e.sale ? "product-sale" : 'sale'}>
                                                 <span><label className="sale-lb">- </label>{e.sales}%</span>
                                             </div>
-                                            <a >
+                                            <a href='' onClick={() => {
+                                                
+                                                handDetail(e.id)
+                                            }}>
                                                 <img src={e.image} alt={e.title} className="first-image  has-img" />
                                                 <img src={e.img} alt={e.title} className="second-image" />
                                             </a>
@@ -229,12 +235,18 @@ const Detail = () => {
                                                     </a>
                                                 </div>
                                                 <div className='view-details'>
-                                                    <a className='view-detail' >
+                                                    <a className='view-detail' href=''  onClick={() => {
+                                                    
+                                                handDetail(e.id)
+                                            }}>
                                                         <span><i className="fa fa-clone"></i></span>
                                                     </a>
                                                 </div>
                                                 <div className="btn-quickview-products">
-                                                    <a className="quickview" ><i className="fa fa-eye"></i></a>
+                                                    <a className="quickview" href='' onClick={() => {
+                                               
+                                                handDetail(e.id)
+                                            }}><i className="fa fa-eye"></i></a>
                                                 </div>
                                             </div>
                                         </div>
