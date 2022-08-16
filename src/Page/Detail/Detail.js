@@ -4,6 +4,9 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import '../Detail/detail.css'
 import { Image } from 'antd';
 import { Rate } from 'antd';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 const Detail = () => {
     const { item } = useParams()
     const [product, setProduct] = useState([])
@@ -41,6 +44,12 @@ const Detail = () => {
                                         <Image src={product?.img} />
                                     </a>
                                 </div>
+                                <OwlCarousel className='owl-theme' loop margin={0} dotsClass={false} nav>
+                                    <div className='item'>
+                                        <img src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="product" />
+                                    </div>
+                                  
+                                </OwlCarousel>
                             </div>
                         </div>
                         <div className='col-lg-6'>
@@ -125,7 +134,7 @@ const Detail = () => {
                                         <span>add to wish</span>
                                     </a>
                                     <a className="details-compare" href="compare.html" title="Compare This Item">
-                                        <i class="fa-solid fa-shuffle"></i>
+                                        <i className="fa-solid fa-shuffle"></i>
                                         <span>Compare This</span>
                                     </a>
                                 </div>
@@ -222,7 +231,7 @@ const Detail = () => {
                                                 <span><label className="sale-lb">- </label>{e.sales}%</span>
                                             </div>
                                             <a href='' onClick={() => {
-                                                
+
                                                 handDetail(e.id)
                                             }}>
                                                 <img src={e.image} alt={e.title} className="first-image  has-img" />
@@ -235,18 +244,18 @@ const Detail = () => {
                                                     </a>
                                                 </div>
                                                 <div className='view-details'>
-                                                    <a className='view-detail' href=''  onClick={() => {
-                                                    
-                                                handDetail(e.id)
-                                            }}>
+                                                    <a className='view-detail' href='' onClick={() => {
+
+                                                        handDetail(e.id)
+                                                    }}>
                                                         <span><i className="fa fa-clone"></i></span>
                                                     </a>
                                                 </div>
                                                 <div className="btn-quickview-products">
                                                     <a className="quickview" href='' onClick={() => {
-                                               
-                                                handDetail(e.id)
-                                            }}><i className="fa fa-eye"></i></a>
+
+                                                        handDetail(e.id)
+                                                    }}><i className="fa fa-eye"></i></a>
                                                 </div>
                                             </div>
                                         </div>

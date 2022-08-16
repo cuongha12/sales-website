@@ -455,3 +455,13 @@
         padding:  5px 30px;
     }
 }
+.owl-item {
+    margin: 0px 8px;
+    cursor: pointer;
+    width: 98px !important;
+}
+.owl-item .item img{
+    
+    width: 100%;
+    border-radius: 8px;
+}
