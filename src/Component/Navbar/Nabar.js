@@ -15,9 +15,13 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
-    const handSearch = () => {
-        navigate(`search/${search}`)
-        setSearch('')
+    const handSearch = (e) => {
+        if (search === "") {
+            e.preventDefault()
+        } else {
+            navigate(`search/${search}`)
+            setSearch('')
+        }
     }
     return (
         <nav className={'navbar-main  navbar-default cl-pri none'}>

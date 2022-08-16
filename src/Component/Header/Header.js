@@ -18,9 +18,13 @@ const Header = () => {
         }
     }, [])
     let navigate = useNavigate()
-    const handSearch = () => {
-        navigate(`search/${search}`)
-        setSearch('')
+    const handSearch = (e) => {
+        if (search === "") {
+            e.preventDefault()
+        } else {
+            navigate(`search/${search}`)
+            setSearch('')
+        }
     }
     return (
         <>

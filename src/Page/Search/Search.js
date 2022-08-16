@@ -40,13 +40,13 @@ const Searchs = () => {
                             product.length !== 0 ? (<div className="content-page" id="search">
                                 <div className="col-md-12  col-xs-12 col-sm-12 col-lg-12">
                                     <span className="subtext">
-                                        Có {product.length} quả tìm kiếm cho <strong>"{id}"</strong>.
+                                        Có {product.length} quả tìm kiếm phù hợp <strong>"{id}"</strong>.
                                     </span>
                                 </div>
                             </div>) : (<div className="content-page" id="search">
                                 <div className="col-md-12  col-xs-12 col-sm-12 col-lg-12">
                                     <span className="subtext">
-                                        Không có kết  quả tìm kiếm cho <strong>"{id}"</strong>.
+                                        Không có kết  quả tìm kiếm hợp với <strong>"{id}"</strong>.
                                     </span>
                                 </div>
                             </div>)

@@ -28,6 +28,7 @@ const Detail = () => {
     const handDetail = (item) => {
         navigate(`/detail/${item}`)
     }
+   
     return (
         <div style={{ background: '#f5f6f7', height: 'auto' }}>
             <section className='inner-section'>
@@ -44,12 +45,7 @@ const Detail = () => {
                                         <Image src={product?.img} />
                                     </a>
                                 </div>
-                                <OwlCarousel className='owl-theme' loop margin={0} dotsClass={false} nav>
-                                    <div className='item'>
-                                        <img src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="product" />
-                                    </div>
-                                  
-                                </OwlCarousel>
+                               
                             </div>
                         </div>
                         <div className='col-lg-6'>
