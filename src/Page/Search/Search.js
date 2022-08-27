@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import "../Search/Search.css"
-const Searchs = () => {
+const Search = () => {
     let { id } = useParams()
     const [product, setProduct] = useState([])
     const Product = async () => {
@@ -114,4 +114,4 @@ const Searchs = () => {
     )
 }
 
-export default Searchs
+export default Search

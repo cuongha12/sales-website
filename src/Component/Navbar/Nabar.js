@@ -18,6 +18,7 @@ const Navbar = () => {
     const handSearch = (e) => {
         if (search === "") {
             e.preventDefault()
+            
         } else {
             navigate(`search/${search}`)
             setSearch('')
