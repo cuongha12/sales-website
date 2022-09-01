@@ -28,7 +28,6 @@ const Detail = () => {
     const handDetail = (item) => {
         navigate(`/detail/${item}`)
     }
-   
     return (
         <div style={{ background: '#f5f6f7', height: 'auto' }}>
             <section className='inner-section'>
@@ -45,7 +44,7 @@ const Detail = () => {
                                         <Image src={product?.img} />
                                     </a>
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div className='col-lg-6'>
@@ -65,16 +64,16 @@ const Detail = () => {
                                     <Rate disabled defaultValue={5} />
                                 </div>
                                 <h3 className="details-price">
-                                    <del className={product.sale ? "" : "sale"}>{product.prices}đ</del>
+                                    <del className={product.sale ? "" : "sale"}>{parseFloat(product.prices).toLocaleString()}đ</del>
                                     <span >
-                                        {product.price}đ
+                                        {parseFloat(product.price).toLocaleString()}đ
                                     </span>
                                 </h3>
                                 <div className='product-action'>
                                     <button className='action-minus'>
                                         <i className="fa-solid fa-minus"></i>
                                     </button>
-                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={1} />
+                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={1} onChange={() => console.log('1')} />
                                     <button className="action-plus" title="Quantity Plus" >
                                         <i className="fa-solid fa-plus"></i>
                                     </button>
@@ -260,9 +259,9 @@ const Detail = () => {
                                                 <a >{e.title} </a>
                                             </h3>
                                             <div className="pro-prices">
-                                                <p className="pro-price">{e.price}₫</p>
+                                                <p className="pro-price">{e.price.toLocaleString()}₫</p>
                                                 <p className="pro-price-del text-left">
-                                                    <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
+                                                    <del className={e.sale ? "compare-price" : 'sale'}>{e.prices.toLocaleString()}₫</del>
                                                 </p>
                                             </div>
                                         </div>

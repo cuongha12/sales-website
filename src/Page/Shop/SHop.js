@@ -426,9 +426,9 @@ const SHop = () => {
                             <div className="product-detail clearfix">
                               <h3 className="pro-name"><a title="Xương ống heo Vissan">{e.title} </a></h3>
                               <div className="pro-prices">
-                                <p className="pro-price">{e.price}₫</p>
+                                <p className="pro-price">{e.price.toLocaleString()}₫</p>
                                 <p className="pro-price-del text-left">
-                                  <del className={e.sale ? "compare-price" : 'sale'}>{e.prices}₫</del>
+                                  <del className={e.sale ? "compare-price" : 'sale'}>{e.prices.toLocaleString()}₫</del>
                                 </p>
                               </div>
                             </div>

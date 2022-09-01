@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import "../Header/Header.component.css"
 
@@ -21,12 +22,14 @@ const Header = () => {
     const handSearch = (e) => {
         if (search === "") {
             e.preventDefault()
-          
+
         } else {
             navigate(`search/${search}`)
             setSearch('')
         }
     }
+    const cartItems = useSelector(state => state.cart)
+   
     return (
         <>
             <header className='header bkg hidden-sm hidden-xs none'>
@@ -62,7 +65,7 @@ const Header = () => {
                             <div className='row'>
                                 <div className='col-lg-12 col-md-12 col-sm-7 col-xs-7'>
                                     <h1>
-                                        <a href="">
+                                        <a href="/">
                                             <img src="//hstatic.net/349/1000150349/1000203344/logo.png?v=28" alt="default-fresh-food" className="img-responsive logoimg" />
                                         </a>
                                     </h1>
@@ -91,7 +94,7 @@ const Header = () => {
                                         <span className="icon-cart">
                                         </span>
                                         <div className="cart-number">
-                                            0
+                                            {cartItems.cartNumber}
                                         </div>
                                     </a>
                                 </div>
