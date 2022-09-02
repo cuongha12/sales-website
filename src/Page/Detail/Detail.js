@@ -7,6 +7,8 @@ import { Rate } from 'antd';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, updateCart } from '../../Redux/actions/cart';
 const Detail = () => {
     const { item } = useParams()
     const [product, setProduct] = useState([])
@@ -27,6 +29,27 @@ const Detail = () => {
     let navigate = useNavigate()
     const handDetail = (item) => {
         navigate(`/detail/${item}`)
+    }
+    const [count, setCount] = useState(1)
+    const dispatch = useDispatch()
+    const handUpdate = (e, data) => {
+        if (e.target.className === "action-plus") {
+            var item = {
+                id: data.id,
+                quantity: count + 1
+            }
+            setCount(count + 1)
+            dispatch(updateCart(item))
+        } else if (count === 1) {
+            return
+        } else {
+            var item = {
+                id: data.id,
+                quantity: count - 1
+            }
+            setCount(count - 1)
+            dispatch(updateCart(item))
+        }
     }
     return (
         <div style={{ background: '#f5f6f7', height: 'auto' }}>
@@ -70,11 +93,11 @@ const Detail = () => {
                                     </span>
                                 </h3>
                                 <div className='product-action'>
-                                    <button className='action-minus'>
+                                    <button className='action-minus' >
                                         <i className="fa-solid fa-minus"></i>
                                     </button>
-                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={1} onChange={() => console.log('1')} />
-                                    <button className="action-plus" title="Quantity Plus" >
+                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${count}`} onChange={() => setCount(count + 1)} />
+                                    <button className="action-plus" title="Quantity Plus" onClick={(e) => handUpdate(e, product)}>
                                         <i className="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
@@ -118,7 +141,7 @@ const Detail = () => {
                                     </ul>
                                 </div>
                                 <div className='details-add-group'>
-                                    <button className="product-add" title="Add to Cart" >
+                                    <button className="product-add" title="Add to Cart" onClick={() => dispatch(addToCart(product))}>
                                         <i className="fa-solid fa-basket-shopping"></i>
                                         <span>add to cart</span>
                                     </button>
@@ -259,9 +282,9 @@ const Detail = () => {
                                                 <a >{e.title} </a>
                                             </h3>
                                             <div className="pro-prices">
-                                                <p className="pro-price">{e.price.toLocaleString()}₫</p>
+                                                <p className="pro-price">{parseFloat(product.price).toLocaleString()}₫</p>
                                                 <p className="pro-price-del text-left">
-                                                    <del className={e.sale ? "compare-price" : 'sale'}>{e.prices.toLocaleString()}₫</del>
+                                                    <del className={e.sale ? "compare-price" : 'sale'}>{parseFloat(product.price).toLocaleString()}₫</del>
                                                 </p>
                                             </div>
                                         </div>

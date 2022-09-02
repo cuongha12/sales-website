@@ -18,10 +18,10 @@ const ProductHome = () => {
     const handDeatail = (item) => {
         navigate(`detail/${item}`)
     }
-   
+
     const cartItems = useSelector(state => state.cart)
 
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     return (
         <section className='clearfix container'>
@@ -58,7 +58,7 @@ const ProductHome = () => {
                                                     </a>
                                                     <div className='actionss'>
                                                         <div className='btn-cart-products'>
-                                                            <a onClick={()=>dispatch(addToCart(e))}>
+                                                            <a onClick={() => dispatch(addToCart(e))}>
                                                                 <i className="fa fa-shopping-bag"></i>
                                                             </a>
                                                         </div>
@@ -144,7 +144,7 @@ const ProductHome = () => {
                                                     </a>
                                                     <div className='actionss'>
                                                         <div className='btn-cart-products'>
-                                                            <a>
+                                                            <a onClick={() => dispatch(addToCart())}>
                                                                 <i className="fa fa-shopping-bag"></i>
                                                             </a>
                                                         </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeFromCart, updateCart } from '../../Redux/actions/cart'
+import { checkOutCart, removeFromCart, updateCart } from '../../Redux/actions/cart'
+import swal from 'sweetalert';
 
 import '../Cart/Cart.css'
 const Cart = () => {
@@ -30,6 +31,10 @@ const Cart = () => {
     const hanDele = (id) => {
         dispatch(removeFromCart(id))
     }
+    const itemsPrice = cartProduct.cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
+    var ship = 50000
+    const shipPrice = itemsPrice + ship;
+
     return (
         <div>
             <div className="wrap-breadcrumb">
@@ -44,67 +49,146 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-            <section className='container'>
-                <div className='row'>
-                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                        <div className='row'>
-                            <div className='col-md-12 col-sm-12 col-xs-12'>
-                                <span className="header-page clearfix">
-                                    <h1>Giỏ hàng</h1>
-                                </span>
-                                <form >
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th className="image">&nbsp;</th>
-                                                <th className="item">Tên sản phẩm</th>
-                                                <th className="qty">Số lượng</th>
-                                                <th className="price">Giá tiền</th>
-                                                <th className="remove">&nbsp;</th>
-                                            </tr>
-                                        </thead>
-                                        {
-                                            cartProduct.cartItems.map((e) => (
-                                                <tbody key={e.id}>
-                                                    <tr>
-                                                        <td className="image">
-                                                            <div className="product_image">
-                                                                <a>
-                                                                    <img src={e.img} alt="Bắp bò Úc giá tay" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td className="item">
-                                                            <a>
-                                                                <strong>{e.name}</strong>
-                                                            </a>
-                                                        </td>
-                                                        <td className="qty">
-                                                            <button className='action-minus' onClick={(x) => upDate(x, e)}>
-                                                                <i className="fa-solid fa-minus"></i>
-                                                            </button>
-                                                            <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${e.quantity}`} onChange={() => console.log(1)} />
-                                                            <button className="action-plus" title="Quantity Plus" onClick={(x) => upDate(x, e)}>
-                                                                <i className="fa-solid fa-plus"></i>
-                                                            </button>
-                                                        </td>
-                                                        <td className="price">{(e.price) * (e.quantity)}₫</td>
-                                                        <td className="remove">
-                                                            <a className="cart" onClick={() => hanDele(e)}>
-                                                                <i className="fa-solid fa-xmark"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            ))
-                                        }
-                                    </table>
-                                </form>
+            {
+                cartProduct.cartItems.length === 0 ?
+                    (<div className="content-page" >
+                        <div className='container'>
+                            <div className="col-md-12  col-xs-12 col-sm-12 col-lg-12">
+                                <div className="cart-empty">
+                                    <img src="https://bizweb.dktcdn.net/100/414/728/themes/867455/assets/empty-cart.png?1661616129384" className="img-responsive center-block" />
+                                    <div className="btn-cart-empty">
+                                        <a className="btn btn-default" href="/shop" title="Tiếp tục mua sắm">Tiếp tục mua sắm</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section >
+                    </div>) : (<section className='container'>
+                        <div className='row'>
+                            <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                <div className='row'>
+                                    <div className='col-md-12 col-sm-12 col-xs-12'>
+                                        <span className="header-page clearfix">
+                                            <h1>Giỏ hàng</h1>
+                                        </span>
+                                        <form className='cart-form'>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th className="image">&nbsp;</th>
+                                                        <th className="item">Tên sản phẩm</th>
+                                                        <th className="qty">Số lượng</th>
+                                                        <th className="price">Giá tiền</th>
+                                                        <th className="remove">&nbsp;</th>
+                                                    </tr>
+                                                </thead>
+                                                {
+                                                    cartProduct.cartItems.map((e) => (
+                                                        <tbody key={e.id}>
+                                                            <tr>
+                                                                <td className="image">
+                                                                    <div className="product_image">
+                                                                        <a>
+                                                                            <img src={e.img} alt="Bắp bò Úc giá tay" />
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="item">
+                                                                    <a>
+                                                                        <strong>{e.name}</strong>
+                                                                    </a>
+                                                                </td>
+                                                                <td className="qty qua">
+                                                                    <div>
+                                                                        <button className='action-minus' onClick={(x) => upDate(x, e)}>
+                                                                            <i className="fa-solid fa-minus"></i>
+                                                                        </button>
+                                                                        <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${e.quantity}`} onChange={() => console.log(1)} />
+                                                                        <button className="action-plus" title="Quantity Plus" onClick={(x) => upDate(x, e)}>
+                                                                            <i className="fa-solid fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="price">{((e.price).toLocaleString()) * (e.quantity)}₫</td>
+                                                                <td className="remove">
+                                                                    <a className="cart" onClick={() => hanDele(e)}>
+                                                                        <i className="fa-solid fa-xmark"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    ))
+                                                }
+                                                <tbody>
+                                                    <tr className="summary">
+                                                        <td className="image ">&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td className="text-center"><b>Tạm tính:</b></td>
+                                                        <td className="price">
+                                                            <span className="total">
+                                                                <strong>{itemsPrice.toLocaleString()}₫</strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr className="summary">
+                                                        <td className="image kay">&nbsp;</td>
+                                                        <td className="image kay" > &nbsp;</td>
+                                                        <td className="text-center "><b>Phí ship:</b></td>
+                                                        <td className="price ">
+                                                            <span className="total ">
+                                                                <strong>{ship.toLocaleString()}₫</strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr className="summary">
+                                                        <td className="image kay">&nbsp;</td>
+                                                        <td className="kay">&nbsp;</td>
+                                                        <td className="text-center  "><b>Tổng Cộng:</b></td>
+                                                        <td className="price">
+                                                            <span className="total">
+                                                                <strong>{shipPrice.toLocaleString()}₫</strong>
+                                                            </span>
+                                                        </td>
+                                                        <td >&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div className='row'>
+                                                <div className=' col-lg-6 col-md-6 col-sm-6 col-xs-12 '>
+
+                                                </div>
+                                                <div className='col-md-6 col-sm-6 col-xs-12 cart-buttons inner-right inner-left col-lg-6'>
+                                                    <div className='buttons' >
+                                                        <button type="submit" className="button-default" onClick={(e) => {
+                                                            e.preventDefault()
+                                                            swal({
+                                                                title: "Good job!",
+                                                                text: "You clicked the button!",
+                                                                icon: "success",
+                                                                button: "Ok!",
+                                                            });
+                                                            dispatch(checkOutCart(cartProduct.cartItems))
+                                                        }
+                                                        }>Thanh toán</button>
+
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12 col-sm-12  col-xs-12 continue-shop">
+
+                                                    <a className='router' href='/shop'>
+                                                        <i className="fa fa-reply"></i> Tiếp tục mua hàng</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section >)
+            }
+
         </div >
     )
 }

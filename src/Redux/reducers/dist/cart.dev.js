@@ -72,6 +72,12 @@ var cartReducer = function cartReducer() {
         cartItems: state.cartItems
       });
 
+    case "CHECK_OUT_CART":
+      localStorage.setItem('cart', JSON.stringify([]));
+      return _objectSpread({}, state, {
+        cartItems: state.cartItems
+      });
+
     default:
       return state;
   }

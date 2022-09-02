@@ -19,3 +19,9 @@ export const removeFromCart = (data) => {
         playload: data
     }
 }
+export const checkOutCart = (data) => {
+    return {
+        type: "CHECK_OUT_CART",
+        playload: data
+    }
+}

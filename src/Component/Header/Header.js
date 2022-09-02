@@ -29,7 +29,7 @@ const Header = () => {
         }
     }
     const cartItems = useSelector(state => state.cart)
-   
+
     return (
         <>
             <header className='header bkg hidden-sm hidden-xs none'>
@@ -177,9 +177,9 @@ const Header = () => {
                                             </li>
                                         </ul>
                                     </div> */}
-                                    <a className="cart ">
+                                    <a className="cart "  href="/cart">
                                         <i className="fa fa-cart-arrow-down"></i>
-                                        <span className="count_item_pr">0</span>
+                                        <span className="count_item_pr">{cartItems.cartNumber}</span>
                                     </a >
                                     <a className="site-header-search cart" title="Tìm kiếm" onClick={() => setShow(true)}>
                                         <i className="fa fa-search" aria-hidden="true"></i>

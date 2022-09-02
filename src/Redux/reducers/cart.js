@@ -39,7 +39,6 @@ const cartReducer = (state = initCart, action) => {
             }
 
         case "UPDATE_CART":
-
             state.cartItems.map((item, key) => {
                 if (item.id === action.playload.id) {
                     state.cartItems[key].quantity = action.playload.quantity;
@@ -54,8 +53,16 @@ const cartReducer = (state = initCart, action) => {
             }
 
         case "REMOVE_FROM_CART":
-            const deleCart = state.cartItems.filter(e => e.id !== action.playload.id)
+
+            const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
+
             localStorage.setItem('cart', JSON.stringify(deleCart))
+            return {
+                ...state,
+                cartItems: state.cartItems,
+            }
+        case "CHECK_OUT_CART":
+            localStorage.setItem('cart', JSON.stringify([]))
             return {
                 ...state,
                 cartItems: state.cartItems,
