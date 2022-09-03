@@ -162,6 +162,7 @@ ul {
 .user {
     cursor: pointer;
     color: #23232c;
+    align-items: center;
 }
 
 .user:hover ul {
@@ -176,7 +177,7 @@ ul {
     min-width: 80px;
     white-space: nowrap;
     position: absolute;
-    top: 65%;
+    top: 89%;
     background: #fff;
     opacity: 0;
     z-index: -1;
@@ -200,6 +201,7 @@ a {
 
 .user ul li a {
     text-decoration: none;
+    color: #23232c;
 }
 
 .user ul li a:hover {
@@ -211,6 +213,11 @@ a {
 }
 
 @media only screen and (max-width: 768px) {
+    .img-user {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+    }
     .stickys {
         position: fixed;
         z-index: 1000;
@@ -576,21 +583,28 @@ a {
         display: block;
         padding: 10px 10px 10px 20px;
     }
-    .header-login li a{
+
+    .header-login li a {
         text-decoration: none;
         text-transform: uppercase;
-        
+
     }
-    .header-login li a{
+
+    .header-login li a {
         text-decoration: none;
         text-transform: uppercase;
-        
-    }.header-login li a:hover{
+        color: #333333;
+
+    }
+
+    .header-login li a:hover {
         color: #28b241;
     }
 }
 
 @media (max-width:425px) {
+    
+
     .evo-search-bar form {
         min-width: 210px;
         max-width: 220px;

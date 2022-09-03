@@ -1,7 +1,9 @@
 import { type } from '@testing-library/user-event/dist/type'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { addToCart } from '../../Redux/actions/cart'
 import "../Shop/Shop.css"
 const SHop = () => {
   const [show, setShow] = useState(false)
@@ -154,6 +156,8 @@ const SHop = () => {
   const handDetail = (item) => {
     navigate(`/detail/${item}`)
   }
+  const dispatch = useDispatch()
+  const user = useSelector(e => e.user)
   return (
     <div className='shop'>
       <div className="wrap-breadcrumb">
@@ -406,7 +410,13 @@ const SHop = () => {
                               </a>
                               <div className="actionss">
                                 <div className="btn-cart-products">
-                                  <a >
+                                  <a onClick={() => {
+                                    if (user.userId === null) {
+                                      navigate('/signup')
+                                    } else {
+                                      dispatch(addToCart(e))
+                                    }
+                                  }}>
                                     <i className="fa fa-shopping-bag" aria-hidden="true"></i>
                                   </a>
                                 </div>
@@ -454,8 +464,8 @@ const SHop = () => {
           </div>
 
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   )
 }
 

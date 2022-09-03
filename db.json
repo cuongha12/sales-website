@@ -20,7 +20,6 @@
         "https://product.hstatic.net/1000150349/product/upload_bdf1a47a2881436f9a967c83150d1c90_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_3649ed2be58a4622b52d965e0bfe96ad_small.jpg"
       ]
-     
     },
     {
       "id": 2,
@@ -60,7 +59,6 @@
         "https://product.hstatic.net/1000150349/product/upload_f883e6e0fd834bc0adf1733fa1333bf8_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_ef502a13c5364183a40c8836fb901cbd_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_b81d687cd40346a28b8cf02bfcd604c5_small.jpg"
-        
       ]
     },
     {
@@ -297,7 +295,6 @@
         "https://product.hstatic.net/1000150349/product/upload_b757176952de4666a6e343ee8f333084_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_8b48d274e41542489e8c0d7eabfbea6f_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_33571c67281f45e38dc307602ac1e201_small.jpg"
-        
       ]
     },
     {
@@ -622,6 +619,96 @@
         "https://product.hstatic.net/1000150349/product/upload_2bb66f9286064098834c1c3bcf234247_small.jpg",
         "https://product.hstatic.net/1000150349/product/upload_a51267ba7dd64de184a2a20cea4fb422_small.jpg"
       ]
+    }
+  ],
+  "user": [
+    {
+      "email": "cuongcaycuhaha@gmail.com",
+      "name": "cuong",
+      "phone": "0387791205",
+      "password": "Cuongha12@",
+      "confirmedPassword": "Cuongha12@",
+      "id": 1
+    },
+    {
+      "email": "chetdisonglai2406@gmail.com",
+      "name": "cuongha12",
+      "phone": "0387791205",
+      "password": "12345678a@",
+      "confirmedPassword": "12345678a@",
+      "id": 2
+    },
+    {
+      "email": "cuong123@gmail.com",
+      "name": "cuongha12",
+      "phone": "0387791205",
+      "password": "Cuong12@",
+      "confirmedPassword": "Cuong12@",
+      "id": 3
+    },
+    {
+      "email": "letuyen123@gmail.com",
+      "name": "letuyen",
+      "phone": "0332132132",
+      "password": "Letuyen123@",
+      "confirmedPassword": "Letuyen123@",
+      "id": 4
+    },
+    {
+      "email": "letuyen12@gmail.com",
+      "name": "cuongha12",
+      "phone": "0321032130",
+      "password": "letuyen123@",
+      "confirmedPassword": "letuyen123@",
+      "id": 5
+    },
+    {
+      "email": "cuongha12@gmail.com",
+      "name": "cuong",
+      "phone": "0932193829",
+      "password": "cuongha12@",
+      "confirmedPassword": "cuongha12@",
+      "id": 6
+    },
+    {
+      "email": "long123@gmail.com",
+      "name": "cuongha12",
+      "phone": "0329302193",
+      "password": "long123@",
+      "confirmedPassword": "long123@",
+      "id": 7
+    },
+    {
+      "email": "long12@gmail.com",
+      "name": "Blog về CEO",
+      "phone": "0329302393",
+      "password": "long12@a",
+      "confirmedPassword": "long12@a",
+      "id": 8
+    },
+    {
+      "email": "",
+      "name": "",
+      "phone": "",
+      "password": "",
+      "confirmedPassword": "",
+      "id": 9
+    },
+    {
+      "email": "",
+      "name": "",
+      "phone": "",
+      "password": "",
+      "confirmedPassword": "",
+      "id": 10
+    },
+    {
+      "email": "cuongbeeg1234@gmail.com",
+      "name": "cuongha12",
+      "phone": "0321032303",
+      "password": "cuongha12@",
+      "confirmedPassword": "cuongha12@",
+      "id": 11
     }
   ]
 }

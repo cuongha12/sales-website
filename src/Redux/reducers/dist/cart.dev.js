@@ -64,18 +64,25 @@ var cartReducer = function cartReducer() {
       });
 
     case "REMOVE_FROM_CART":
-      var deleCart = state.cartItems.filter(function (e) {
-        return e.id !== action.playload.id;
-      });
-      localStorage.setItem('cart', JSON.stringify(deleCart));
+      // // const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
+      // const deleCart = state.cartItems.filter((item, key) => {
+      //     if (item.id !== action.playload.id) {
+      //         state.cartItems[key].length = action.playload.length;
+      //     }
+      // })
+      // console.log(deleCart);
+      localStorage.setItem('cart', JSON.stringify(action.playload));
       return _objectSpread({}, state, {
-        cartItems: state.cartItems
+        cartItems: action.playload,
+        cartNumber: action.playload.length
       });
 
     case "CHECK_OUT_CART":
-      localStorage.setItem('cart', JSON.stringify([]));
+      state.cartItems = [];
+      localStorage.setItem('cart', JSON.stringify(action.playload));
       return _objectSpread({}, state, {
-        cartItems: state.cartItems
+        cartItems: action.playload,
+        cartNumber: action.playload.length
       });
 
     default:

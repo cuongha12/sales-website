@@ -42,9 +42,7 @@ const cartReducer = (state = initCart, action) => {
             state.cartItems.map((item, key) => {
                 if (item.id === action.playload.id) {
                     state.cartItems[key].quantity = action.playload.quantity;
-
                 }
-
             })
             localStorage.setItem('cart', JSON.stringify(state.cartItems))
             return {
@@ -53,19 +51,27 @@ const cartReducer = (state = initCart, action) => {
             }
 
         case "REMOVE_FROM_CART":
+            // // const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
+            // const deleCart = state.cartItems.filter((item, key) => {
+            //     if (item.id !== action.playload.id) {
+            //         state.cartItems[key].length = action.playload.length;
+            //     }
 
-            const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
-
-            localStorage.setItem('cart', JSON.stringify(deleCart))
+            // })
+            // console.log(deleCart);
+            localStorage.setItem('cart', JSON.stringify(action.playload))
             return {
                 ...state,
-                cartItems: state.cartItems,
+                cartItems: action.playload,
+                cartNumber: action.playload.length,
             }
         case "CHECK_OUT_CART":
-            localStorage.setItem('cart', JSON.stringify([]))
+            state.cartItems = []
+            localStorage.setItem('cart', JSON.stringify(action.playload))
             return {
                 ...state,
-                cartItems: state.cartItems,
+                cartItems: action.playload,
+                cartNumber: action.playload.length
             }
         default:
             return state

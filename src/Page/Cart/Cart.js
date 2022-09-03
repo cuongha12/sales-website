@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkOutCart, removeFromCart, updateCart } from '../../Redux/actions/cart'
 import swal from 'sweetalert';
 
 import '../Cart/Cart.css'
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
     const dispatch = useDispatch()
     const cartProduct = useSelector(e => e.cart)
+    const [products, setProducts] = useState(cartProduct)
+    let navigate = useNavigate()
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(products.cartItems))
+    }, [products])
     const upDate = (e, data) => {
         e.preventDefault()
         if (e.target.className === "action-plus") {
@@ -29,9 +35,18 @@ const Cart = () => {
         }
     }
     const hanDele = (id) => {
-        dispatch(removeFromCart(id))
+        const data = [...products.cartItems];
+        const cartFilter = data.filter((c) => c.id !== id.id);
+        setProducts({ cartItems: cartFilter });
+        dispatch(removeFromCart((cartFilter)))
     }
-    const itemsPrice = cartProduct.cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
+    const handCheckOut = (ids) => {
+        dispatch(checkOutCart(([])))
+        const data = [];
+        setProducts({ cartItems: data });
+        navigate('/')
+    }
+    const itemsPrice = products.cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
     var ship = 50000
     const shipPrice = itemsPrice + ship;
 
@@ -50,7 +65,7 @@ const Cart = () => {
                 </div>
             </div>
             {
-                cartProduct.cartItems.length === 0 ?
+                products.cartItems.length === 0 ?
                     (<div className="content-page" >
                         <div className='container'>
                             <div className="col-md-12  col-xs-12 col-sm-12 col-lg-12">
@@ -82,7 +97,7 @@ const Cart = () => {
                                                     </tr>
                                                 </thead>
                                                 {
-                                                    cartProduct.cartItems.map((e) => (
+                                                    products.cartItems.map((e) => (
                                                         <tbody key={e.id}>
                                                             <tr>
                                                                 <td className="image">
@@ -108,7 +123,7 @@ const Cart = () => {
                                                                         </button>
                                                                     </div>
                                                                 </td>
-                                                                <td className="price">{((e.price).toLocaleString()) * (e.quantity)}₫</td>
+                                                                <td className="price">{((e.price) * (e.quantity)).toLocaleString()}₫</td>
                                                                 <td className="remove">
                                                                     <a className="cart" onClick={() => hanDele(e)}>
                                                                         <i className="fa-solid fa-xmark"></i>
@@ -164,12 +179,12 @@ const Cart = () => {
                                                         <button type="submit" className="button-default" onClick={(e) => {
                                                             e.preventDefault()
                                                             swal({
-                                                                title: "Good job!",
-                                                                text: "You clicked the button!",
+                                                                title: "Đặt hàng thành công!",
+                                                                text: `Tổng đơn hàng  ${shipPrice.toLocaleString()}₫`,
                                                                 icon: "success",
                                                                 button: "Ok!",
                                                             });
-                                                            dispatch(checkOutCart(cartProduct.cartItems))
+                                                            handCheckOut(products.cartItems)
                                                         }
                                                         }>Thanh toán</button>
 

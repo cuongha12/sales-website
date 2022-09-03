@@ -24,18 +24,20 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} >
             <Route index element={<Home />} />
-            <Route path='/shop' element={<SHop />} />
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/introduce' element={<Introduce />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/search/:id' element={<Search />} />
-            <Route path='/detail/:item' element={<Detail />} />
-            <Route path='searchs' element={<Searchs />} />
-            <Route path='/cart' element={<Cart />} />
+            <Route path='/shop/' element={<SHop />} />
+            <Route path='/blog/' element={<Blog />} />
+            <Route path='/introduce/' element={<Introduce />} />
+            <Route path='/contact/' element={<Contact />} />
+            <Route path='/search/:id/' element={<Search />} />
+            <Route path='/detail/:item/' element={<Detail />} />
+            <Route path='searchs/' element={<Searchs />} />
+            <Route path='/cart/' element={<Cart />} />
           </Route>
-          <Route path='login' element={<Test />} >
-            <Route index element={<Login />} />
-            <Route path='form' element={<Form />} />
+          <Route path='login' element={<Form />} >
+            
+          </Route>
+          <Route path='signup' element={<Login />} >
+            
           </Route>
         </Routes>
       </BrowserRouter>

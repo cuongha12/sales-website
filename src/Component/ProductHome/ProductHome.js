@@ -18,10 +18,9 @@ const ProductHome = () => {
     const handDeatail = (item) => {
         navigate(`detail/${item}`)
     }
-
     const cartItems = useSelector(state => state.cart)
-
     const dispatch = useDispatch()
+    const user = useSelector(e => e.user)
 
     return (
         <section className='clearfix container'>
@@ -58,7 +57,14 @@ const ProductHome = () => {
                                                     </a>
                                                     <div className='actionss'>
                                                         <div className='btn-cart-products'>
-                                                            <a onClick={() => dispatch(addToCart(e))}>
+                                                            <a onClick={() => {
+                                                                if (user.userId === null) {
+                                                                    navigate('/signup')
+                                                                } else {
+                                                                    dispatch(addToCart(e))
+                                                                }
+
+                                                            }}>
                                                                 <i className="fa fa-shopping-bag"></i>
                                                             </a>
                                                         </div>
@@ -144,7 +150,14 @@ const ProductHome = () => {
                                                     </a>
                                                     <div className='actionss'>
                                                         <div className='btn-cart-products'>
-                                                            <a onClick={() => dispatch(addToCart())}>
+                                                            <a onClick={() => {
+                                                                if (user.userId === null) {
+                                                                    navigate('/signup')
+                                                                } else {
+                                                                    dispatch(addToCart(e))
+                                                                }
+
+                                                            }}>
                                                                 <i className="fa fa-shopping-bag"></i>
                                                             </a>
                                                         </div>

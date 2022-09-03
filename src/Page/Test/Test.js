@@ -4,7 +4,7 @@ import Nav from '../../Component/Nav/Nav'
 
 const Test = () => {
     return (
-        <div>
+        <div style={{}}>
             <Nav/>
             <Outlet/>
         </div>

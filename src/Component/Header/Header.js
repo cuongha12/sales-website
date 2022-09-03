@@ -1,6 +1,8 @@
-import React, { useLayoutEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { RemoveUserToLocalStorage } from '../../Redux/actions/user'
+import { removeFromCart } from '../../Redux/actions/cart'
 import "../Header/Header.component.css"
 
 const Header = () => {
@@ -8,6 +10,7 @@ const Header = () => {
     const [show, setShow] = useState(false)
     const [menu, setMenu] = useState(false)
     const [search, setSearch] = useState("")
+
     useLayoutEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 120)
@@ -22,14 +25,21 @@ const Header = () => {
     const handSearch = (e) => {
         if (search === "") {
             e.preventDefault()
-
         } else {
             navigate(`search/${search}`)
             setSearch('')
         }
     }
-    const cartItems = useSelector(state => state.cart)
-
+    const cartProduct = useSelector(state => state.cart)
+    // const loco = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+    // const [product, setProduct] = useState(loco)
+    // console.log(product);
+    const userPage = useSelector(e => e.user)
+    const dispatch = useDispatch()
+    const handLogout = () => {
+        dispatch(RemoveUserToLocalStorage(null))
+        dispatch(removeFromCart([]))
+    }
     return (
         <>
             <header className='header bkg hidden-sm hidden-xs none'>
@@ -74,27 +84,36 @@ const Header = () => {
                         </div>
                         <div className='col-lg-4 col-md-5 col-sm-12 col-xs-12 '>
                             <div className='row justify-content-around'>
-                                <div className="user d-flex align-items-ct">
+                                {userPage.userId === null ? (<div className="user d-flex align-items-ct">
+                                    <div className="user-logo">
+                                        <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=7206a8&_nc_ohc=3H8EZVZrRu0AX9wIx4V&_nc_oc=AQk240MFmDZPEd3RcnK4XuAA6lEYpbDpmhmlk7acC4-EbZi1KTJZ9Xbcj-F6gn59AGw&_nc_ht=scontent.fhan14-3.fna&oh=00_AT89Be0iH9CQ7zGROk1CVM_YrtlvO_MccMXtJ5jnEBAU-w&oe=633935F8" alt="" />
+                                    </div>
+                                    <ul>
+                                        <li >
+                                            <a href="/signup">Đăng nhập</a>
+                                        </li>
+                                        <li >
+                                            <a href="/login">Đăng ký</a>
+                                        </li>
+                                    </ul>
+                                </div>) : (<div className="user d-flex align-items-ct">
                                     <div className="user-logo">
                                         <img src="https://mcdn.nhanh.vn/store/18131/ps/20171117/22228659_1958158637798279_6481759436594791816_n_552x640.jpg" alt="" />
                                     </div>
-                                    <p className="user-name ml-2">Cuong</p>
                                     <span className="caret"></span>
                                     <ul>
                                         <li >
-                                            <a href="">Đăng nhập</a>
+                                            <a onClick={handLogout}>Đăng xuất</a>
                                         </li>
-                                        <li >
-                                            <a href="">Đăng ký</a>
-                                        </li>
+
                                     </ul>
-                                </div>
+                                </div>)}
                                 <div className='cart-info hidden-xs'>
                                     <a className="cart-link" href="/cart">
                                         <span className="icon-cart">
                                         </span>
                                         <div className="cart-number">
-                                            {cartItems.cartNumber}
+                                            {cartProduct.cartNumber}
                                         </div>
                                     </a>
                                 </div>
@@ -177,9 +196,9 @@ const Header = () => {
                                             </li>
                                         </ul>
                                     </div> */}
-                                    <a className="cart "  href="/cart">
+                                    <a className="cart " href="/cart">
                                         <i className="fa fa-cart-arrow-down"></i>
-                                        <span className="count_item_pr">{cartItems.cartNumber}</span>
+                                        <span className="count_item_pr">   {cartProduct.cartNumber}</span>
                                     </a >
                                     <a className="site-header-search cart" title="Tìm kiếm" onClick={() => setShow(true)}>
                                         <i className="fa fa-search" aria-hidden="true"></i>
@@ -199,11 +218,15 @@ const Header = () => {
                     <div className='row'>
                         <div className='col-md-12 col-lg-12'>
                             <ul id="nav" className='nav'>
-                                <li className="nav-item ">
+                                {userPage.userId === null ? (<li className="nav-item ">
                                     <a className="nav-link " >
                                         <i className="fa-solid fa-circle-user"></i>
                                     </a>
-                                </li>
+                                </li>) : (<li className="nav-item ">
+                                    <a className="nav-link " >
+                                        <img src='https://mcdn.nhanh.vn/store/18131/ps/20171117/22228659_1958158637798279_6481759436594791816_n_552x640.jpg' className='img-user'/>
+                                    </a>
+                                </li>)}
                                 <li className='nav-item has-childs'>
                                     <NavLink to={'/'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Trang chủ</NavLink>
                                 </li>
@@ -221,10 +244,14 @@ const Header = () => {
                                     <NavLink to={'contact'} className={({ isActive }) => (isActive ? ' active' : '')} onClick={() => setMenu(false)}>Liên hệ</NavLink>
                                 </li>
                             </ul>
-                            <ul className='header-login'>
-                                <li><a className="reg" title="Đăng ký">Đăng ký</a></li>
-                                <li><a className="log" title="Đăng nhập">Đăng nhập</a></li>
-                            </ul>
+                            {
+                                userPage.userId === null ? (<ul className='header-login'>
+                                    <li><a className="reg" title="Đăng ký" href='/login'>Đăng ký</a></li>
+                                    <li><a className="log" title="Đăng nhập" href='/signup'>Đăng nhập</a></li>
+                                </ul>) : (<ul className='header-login'>
+                                    <li><a onClick={handLogout} className="log" title="Đăng xuất"><i className="fa-solid fa-right-from-bracket"></i>Đăng xuất</a></li>
+                                </ul>)
+                            }
                         </div>
                     </div>
                 </div>

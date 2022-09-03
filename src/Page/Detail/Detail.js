@@ -43,6 +43,7 @@ const Detail = () => {
         } else if (count === 1) {
             return
         } else {
+            console.log('xxxxxx');
             var item = {
                 id: data.id,
                 quantity: count - 1
@@ -51,6 +52,7 @@ const Detail = () => {
             dispatch(updateCart(item))
         }
     }
+    const user = useSelector(e => e.user)
     return (
         <div style={{ background: '#f5f6f7', height: 'auto' }}>
             <section className='inner-section'>
@@ -93,10 +95,10 @@ const Detail = () => {
                                     </span>
                                 </h3>
                                 <div className='product-action'>
-                                    <button className='action-minus' >
-                                        <i className="fa-solid fa-minus"></i>
+                                    <button className='action-minus' onClick={(e) => handUpdate(e, product)}>
+                                        <i className="fa-solid fa-minus" ></i>
                                     </button>
-                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${count}`} onChange={() => setCount(count + 1)} />
+                                    <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${count}`} onChange={() => console.log('xx')} />
                                     <button className="action-plus" title="Quantity Plus" onClick={(e) => handUpdate(e, product)}>
                                         <i className="fa-solid fa-plus"></i>
                                     </button>
@@ -141,27 +143,32 @@ const Detail = () => {
                                     </ul>
                                 </div>
                                 <div className='details-add-group'>
-                                    <button className="product-add" title="Add to Cart" onClick={() => dispatch(addToCart(product))}>
+                                    <button className="product-add" title="Add to Cart" onClick={() => {
+                                        if (user.userId === null) {
+                                            navigate('/signup')
+                                        } else {
+                                            dispatch(addToCart(product))
+                                        }}}>
                                         <i className="fa-solid fa-basket-shopping"></i>
                                         <span>add to cart</span>
                                     </button>
-                                </div>
-                                <div className="details-action-group">
-                                    <a className="details-wish wish" href="#" title="Add Your Wishlist">
-                                        <i className="fa-solid fa-heart"></i>
-                                        <span>add to wish</span>
-                                    </a>
-                                    <a className="details-compare" href="compare.html" title="Compare This Item">
-                                        <i className="fa-solid fa-shuffle"></i>
-                                        <span>Compare This</span>
-                                    </a>
-                                </div>
+                            </div>
+                            <div className="details-action-group">
+                                <a className="details-wish wish" href="#" title="Add Your Wishlist">
+                                    <i className="fa-solid fa-heart"></i>
+                                    <span>add to wish</span>
+                                </a>
+                                <a className="details-compare" href="compare.html" title="Compare This Item">
+                                    <i className="fa-solid fa-shuffle"></i>
+                                    <span>Compare This</span>
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </section>
+
+        </div>
+            </section >
             <section className='inner-section tu'>
                 <div className='container'>
                     <div className='row'>
@@ -300,7 +307,7 @@ const Detail = () => {
                     </div>
                 </div>
             </section>
-        </div>
+        </div >
     )
 }
 
