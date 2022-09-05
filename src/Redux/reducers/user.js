@@ -1,10 +1,13 @@
 
 const itemUser = JSON.parse(localStorage.getItem('user') || null)
 const initState = {
-    userId: itemUser
+    userId: itemUser,
+    userPost: []
 }
 const UserReducer = (state = initState, action) => {
     switch (action.type) {
+        case "POST_USER":
+            return { ...state, userPost: action.playload }
         case "SAVE_USER":
             localStorage.setItem('user', JSON.stringify(action.playload))
             return { ...state, userId: action.playload }

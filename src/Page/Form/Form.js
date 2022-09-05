@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from "formik";
 import "../Form/Form.css"
 import * as Yup from "yup";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../Redux/actions/user';
 const Form = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [product, setProduct] = useState([])
+  const User = async () => {
+    return await axios.get('http://localhost:3000/user')
+      .then(res => setProduct(res.data))
+  }
+  useEffect(() => {
+    User()
+  }, [])
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -41,15 +52,16 @@ const Form = () => {
           "Phải là một số điện thoại hợp lệ"
         ),
     }),
-    onSubmit: (values) => {
-    
+    onSubmit: async (values) => {
+
       swal({
-        title: "Đăng kí  thành công!",
+        title: "Đăng kí tài khoản thành công!",
         icon: "success",
         button: "Ok!",
       });
-      axios.post('http://localhost:3000/user',
+      const userCard = await axios.post('http://localhost:3000/user',
         formik.values)
+      dispatch(createUser(product))
       navigate('/signup')
     },
   });
@@ -60,7 +72,7 @@ const Form = () => {
           <div className='row justify-content-center'>
             <div className='col-sm-12 col-md-12 col-lg-12'>
               <div className="user-form-logo">
-                <a >
+                <a href='/'>
                   <img src="https://hstatic.net/349/1000150349/1000203344/logo.png?v=28" alt="logo" />
                 </a>
               </div>

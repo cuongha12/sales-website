@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { addToCart } from '../../Redux/actions/cart'
 import "../Search/Search.css"
 const Search = () => {
     let { id } = useParams()
@@ -16,6 +18,8 @@ const Search = () => {
     const handDetail = (item) => {
         navigate(`/detail/${item}`)
     }
+    const dispatch = useDispatch()
+    const user = useSelector(e => e.user)
     return (
         <div>
             <div className="wrap-breadcrumb">
@@ -74,7 +78,13 @@ const Search = () => {
                                             </a>
                                             <div className="actionss">
                                                 <div className="btn-cart-products">
-                                                    <a >
+                                                    <a onClick={() => {
+                                                        if (user.userId === null) {
+                                                            navigate('/signup')
+                                                        } else {
+                                                            dispatch(addToCart(e))
+                                                        }
+                                                    }}>
                                                         <i className="fa fa-shopping-bag" aria-hidden="true"></i>
                                                     </a>
                                                 </div>
@@ -105,7 +115,7 @@ const Search = () => {
                                         </div>
                                     </div>
                                 </div>
-                            ))) 
+                            )))
                         }
                     </div>
                 </div>

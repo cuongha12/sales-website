@@ -18,9 +18,7 @@ const Login = () => {
   useEffect(() => {
     User()
   }, [])
-
   const formik = useFormik(
-
     {
 
       initialValues: {
@@ -96,7 +94,7 @@ const Login = () => {
           <div className='row justify-content-center'>
             <div className='col-sm-12 col-md-12 col-lg-12'>
               <div className="user-form-logo">
-                <a >
+                <a href='/'>
                   <img src="https://hstatic.net/349/1000150349/1000203344/logo.png?v=28" alt="logo" />
                 </a>
               </div>

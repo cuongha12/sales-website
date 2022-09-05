@@ -31,9 +31,6 @@ const Header = () => {
         }
     }
     const cartProduct = useSelector(state => state.cart)
-    // const loco = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-    // const [product, setProduct] = useState(loco)
-    // console.log(product);
     const userPage = useSelector(e => e.user)
     const dispatch = useDispatch()
     const handLogout = () => {
@@ -47,15 +44,6 @@ const Header = () => {
                     <div className='row'>
                         <div className='col-lg-4 col-md-7 col-sm-12 col-xs-12 '>
                             <aside className='top-info'>
-                                {/* <div className='cart-info hidden-xs'>
-                                <a className="cart-link" href="/cart">
-                                    <span className="icon-cart">
-                                    </span>
-                                    <div className="cart-number">
-                                        0
-                                    </div>
-                                </a>
-                            </div> */}
                                 <div className="navholder">
                                     <nav id="subnav">
                                         <ul>
@@ -100,7 +88,6 @@ const Header = () => {
                                     <div className="user-logo">
                                         <img src="https://mcdn.nhanh.vn/store/18131/ps/20171117/22228659_1958158637798279_6481759436594791816_n_552x640.jpg" alt="" />
                                     </div>
-                                    <span className="caret"></span>
                                     <ul>
                                         <li >
                                             <a onClick={handLogout}>Đăng xuất</a>
@@ -122,36 +109,6 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-            {/* <nav className='navbar-main navbar navbar-default cl-pri'>
-                <div className='container nav-wrapper check_nav responsive-menu'>
-                    <div className='row'>
-                        <div className='navbar-header'>
-                            <div className='mobile-menu-icon-wrapper'>
-                                <div className='menu-logo'>
-                                    <h1 className="logo logo-mobile">
-                                        <a >
-                                            <img src="//hstatic.net/349/1000150349/1000203344/logo.png?v=28" alt="default-fresh-food" className="img-responsive logoimg" />
-                                        </a>
-                                    </h1>
-                                    <div className="nav-login">
-                                        <a className="cart " title="Tài khoản">
-                                            <img className="avatar" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" />
-                                        </a>
-                                    </div>
-                                    <div className="menu-btn click-menu-mobile ">
-                                        <a href="#menu-mobile" class="navbar-toggle">
-                                            <span className="sr-only">Toggle navigation</span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav> */}
             <div className={scrolled ? 'stickys nones ' : "nones"}>
                 <div className=''>
                     <div className={show ? 'evo-search-bar show-search ' : "evo-search-bar "}>
@@ -183,19 +140,6 @@ const Header = () => {
                                     </a>
                                 </div>
                                 <div className="evo-flexitem evo-flexitem-fill visible-sm visible-xs">
-                                    {/* <div className="avatar-mobile">
-                                        <a title="Tài khoản">
-                                            <img className="avatar" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" />
-                                        </a>
-                                        <ul>
-                                            <li >
-                                                <a >Đăng nhập</a>
-                                            </li>
-                                            <li >
-                                                <a >Đăng ký</a>
-                                            </li>
-                                        </ul>
-                                    </div> */}
                                     <a className="cart " href="/cart">
                                         <i className="fa fa-cart-arrow-down"></i>
                                         <span className="count_item_pr">   {cartProduct.cartNumber}</span>

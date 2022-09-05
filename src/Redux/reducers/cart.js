@@ -51,20 +51,14 @@ const cartReducer = (state = initCart, action) => {
             }
 
         case "REMOVE_FROM_CART":
-            // // const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
-            // const deleCart = state.cartItems.filter((item, key) => {
-            //     if (item.id !== action.playload.id) {
-            //         state.cartItems[key].length = action.playload.length;
-            //     }
-
-            // })
-            // console.log(deleCart);
+            console.log(action.playload);
             localStorage.setItem('cart', JSON.stringify(action.playload))
             return {
                 ...state,
                 cartItems: action.playload,
                 cartNumber: action.playload.length,
             }
+
         case "CHECK_OUT_CART":
             state.cartItems = []
             localStorage.setItem('cart', JSON.stringify(action.playload))

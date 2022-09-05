@@ -64,13 +64,7 @@ var cartReducer = function cartReducer() {
       });
 
     case "REMOVE_FROM_CART":
-      // // const deleCart = state.cartItems.filter(e => e.id !== action.playload.id);
-      // const deleCart = state.cartItems.filter((item, key) => {
-      //     if (item.id !== action.playload.id) {
-      //         state.cartItems[key].length = action.playload.length;
-      //     }
-      // })
-      // console.log(deleCart);
+      console.log(action.playload);
       localStorage.setItem('cart', JSON.stringify(action.playload));
       return _objectSpread({}, state, {
         cartItems: action.playload,

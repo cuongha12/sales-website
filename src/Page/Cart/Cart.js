@@ -13,18 +13,34 @@ const Cart = () => {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products.cartItems))
     }, [products])
-    const upDate = (e, data) => {
+    const upDate = (e, data, type) => {
+
         e.preventDefault()
-        if (e.target.className === "action-plus") {
+        if (type === "plus") {
             var item = {
                 id: data.id,
                 quantity: data.quantity + 1
             }
             dispatch(updateCart(item))
         } else if (data.quantity === 1) {
-            const loco = JSON.parse(localStorage.getItem('cart'))
-            const deleteData = loco.filter(e => e.id !== data.id)
-            dispatch(updateCart(deleteData))
+
+            swal({
+                title: "Bạn chắc chắn muốn bỏ sản phẩm này?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Xoá sản phẩm thành công", {
+                            icon: "success",
+                        });
+                        const kaka = [...products.cartItems]
+                        const removeCart = kaka.filter(e => e.id !== data.id)
+                        setProducts({ cartItems: removeCart });
+                        dispatch(removeFromCart((removeCart)))
+                    }
+                })
         }
         else {
             var item = {
@@ -114,11 +130,11 @@ const Cart = () => {
                                                                 </td>
                                                                 <td className="qty qua">
                                                                     <div>
-                                                                        <button className='action-minus' onClick={(x) => upDate(x, e)}>
+                                                                        <button className='action-minus' onClick={(x) => upDate(x, e, "minus")}>
                                                                             <i className="fa-solid fa-minus"></i>
                                                                         </button>
                                                                         <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${e.quantity}`} onChange={() => console.log(1)} />
-                                                                        <button className="action-plus" title="Quantity Plus" onClick={(x) => upDate(x, e)}>
+                                                                        <button className="action-plus" title="Quantity Plus" onClick={(x) => upDate(x, e, "plus")}>
                                                                             <i className="fa-solid fa-plus"></i>
                                                                         </button>
                                                                     </div>

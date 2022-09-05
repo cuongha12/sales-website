@@ -7,7 +7,6 @@ import Login from './Page/Login/Login';
 import Blog from './Page/Blog/Blog';
 import Introduce from './Page/Introduce/Introduce';
 import Contact from './Page/Contact/Contact';
-import Test from './Page/Test/Test';
 import Form from './Page/Form/Form';
 import Search from './Page/Search/Search';
 import Detail from './Page/Detail/Detail';

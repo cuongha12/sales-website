@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RemoveUserToLocalStorage = exports.saveUserToLocalStorage = void 0;
+exports.RemoveUserToLocalStorage = exports.saveUserToLocalStorage = exports.createUser = void 0;
+
+var createUser = function createUser(user) {
+  return {
+    type: "POST_USER",
+    playload: user
+  };
+};
+
+exports.createUser = createUser;
 
 var saveUserToLocalStorage = function saveUserToLocalStorage(user) {
   return {

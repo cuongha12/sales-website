@@ -13,7 +13,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var itemUser = JSON.parse(localStorage.getItem('user') || null);
 var initState = {
-  userId: itemUser
+  userId: itemUser,
+  userPost: []
 };
 
 var UserReducer = function UserReducer() {
@@ -21,6 +22,11 @@ var UserReducer = function UserReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case "POST_USER":
+      return _objectSpread({}, state, {
+        userPost: action.playload
+      });
+
     case "SAVE_USER":
       localStorage.setItem('user', JSON.stringify(action.playload));
       return _objectSpread({}, state, {

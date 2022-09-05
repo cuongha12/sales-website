@@ -12,7 +12,7 @@ const SHop = () => {
   const [product, setProduct] = useState([])
   const [current, setCurrent] = useState(1)
   const [page, setPage] = useState(false)
-  const [sort, setSort] = useState('')
+  const [sort, setSort] = useState('created-descending')
   const [item, setItem] = useState([])
   const [category, setCategory] = useState(false)
 
@@ -150,7 +150,23 @@ const SHop = () => {
   const handSort = async (e) => {
     let values = e.target.value
     setSort(values)
-    console.log(sort);
+    if (values === "created-descending") {
+
+    } else if (values === "price-ascending") {
+      const sortPrice = product.sort((a, b) => a.price - b.price)
+    } else if (values === "price-descending") {
+      const sortPrice = product.sort((a, b) => b.price - a.price)
+    } else if (values === "title-ascending") {
+      const sortPrice = product.sort((a, b) => a.title.localeCompare(b.title))
+    } else if (values === "title-descending") {
+      const sortPrice = product.sort((a, b) => b.title.localeCompare(a.title))
+    } else if (values === "created-ascending") {
+
+    } else if (values === "manual") {
+
+    } else if (values === "best-selling") {
+
+    }
   }
   let navigate = useNavigate()
   const handDetail = (item) => {
@@ -195,7 +211,9 @@ const SHop = () => {
                   <div className='filterBtn txtLeft showOverlay'>
                     <i className="fa fa-sort-alpha-asc" ></i>
                     <span className='custom-dropdown custom-dropdown--white'>
-                      <select className='sort-by custom-dropdown__select custom-dropdown__select--white'>
+                      <select className='sort-by custom-dropdown__select custom-dropdown__select--white' onChange={handSort}
+                        value={sort}>
+
                         {
                           sortOptions.map((e) => (
                             <option value={e.title} key={e.id}>{e.name}</option>
@@ -434,7 +452,7 @@ const SHop = () => {
                               </div>
                             </div>
                             <div className="product-detail clearfix">
-                              <h3 className="pro-name"><a title="Xương ống heo Vissan">{e.title} </a></h3>
+                              <h3 className="pro-name"><a >{e.title} </a></h3>
                               <div className="pro-prices">
                                 <p className="pro-price">{e.price.toLocaleString()}₫</p>
                                 <p className="pro-price-del text-left">

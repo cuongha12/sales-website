@@ -687,28 +687,84 @@
       "id": 8
     },
     {
-      "email": "",
-      "name": "",
-      "phone": "",
-      "password": "",
-      "confirmedPassword": "",
+      "email": "cuongha24@gmail.com",
+      "name": "cuong",
+      "phone": "0323023906",
+      "password": "cuonghaa@1",
+      "confirmedPassword": "cuonghaa@1",
       "id": 9
     },
     {
-      "email": "",
-      "name": "",
-      "phone": "",
-      "password": "",
-      "confirmedPassword": "",
+      "email": "cuong123@gmail.com",
+      "name": "hello",
+      "phone": "0393923932",
+      "password": "1234567a@",
+      "confirmedPassword": "1234567a@",
       "id": 10
     },
     {
-      "email": "cuongbeeg1234@gmail.com",
-      "name": "cuongha12",
-      "phone": "0321032303",
-      "password": "cuongha12@",
-      "confirmedPassword": "cuongha12@",
+      "email": "cuong123@gmail.com",
+      "name": "hello",
+      "phone": "0393923932",
+      "password": "1234567a@",
+      "confirmedPassword": "1234567a@",
       "id": 11
+    },
+    {
+      "email": "thai123@gmail.com",
+      "name": "thai",
+      "phone": "0421323323",
+      "password": "thai123@",
+      "confirmedPassword": "thai123@",
+      "id": 12
+    },
+    {
+      "email": "cuong123@gmail.com",
+      "name": "Blog về CEO",
+      "phone": "0932139323",
+      "password": "1234567a@",
+      "confirmedPassword": "1234567a@",
+      "id": 13
+    },
+    {
+      "email": "cuong13@gmail.com",
+      "name": "cuongha12",
+      "phone": "0392103931",
+      "password": "123456a@",
+      "confirmedPassword": "123456a@",
+      "id": 14
+    },
+    {
+      "email": "linh12@gmail.com",
+      "name": "linh",
+      "phone": "0902392039",
+      "password": "123456a@",
+      "confirmedPassword": "123456a@",
+      "id": 15
+    },
+    {
+      "email": "cuong09@gmail.com",
+      "name": "cuong",
+      "phone": "0323233232",
+      "password": "1234567a@",
+      "confirmedPassword": "1234567a@",
+      "id": 16
+    },
+    {
+      "email": "btvn123@gmail.com",
+      "name": "btnv",
+      "phone": "0320330239",
+      "password": "123456a@",
+      "confirmedPassword": "123456a@",
+      "id": 17
+    },
+    {
+      "email": "admin@gmail.com",
+      "name": "cuong",
+      "phone": "0387791205",
+      "password": "1",
+      "confirmedPassword": "1",
+      "id": 18
     }
   ]
 }
