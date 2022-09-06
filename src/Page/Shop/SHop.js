@@ -253,7 +253,7 @@ const SHop = () => {
                       </ul>
                     </li>
                     <li className='item has-sub  first'>
-                      <a className={menu ? "active" : ""} onClick={() => setShow(!menu)}>
+                      <a className={menu ? "active" : ""} onClick={() => setMenu(!menu)}>
                         <span className="lbl">Thực phẩm tươi sống</span>
                         <span className="sign drop-down collapsed">
                         </span>
@@ -269,7 +269,7 @@ const SHop = () => {
                       </ul>
                     </li>
                     <li className='item has-sub  first'>
-                      <a className={menus ? "active" : ""} onClick={() => setShow(!menus)}>
+                      <a className={menus ? "active" : ""} onClick={() => setMenus(!menus)}>
                         <span className="lbl">Thực phẩm khô</span>
                         <span className="sign drop-down collapsed">
                         </span>
