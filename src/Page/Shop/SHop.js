@@ -153,13 +153,13 @@ const SHop = () => {
     if (values === "created-descending") {
 
     } else if (values === "price-ascending") {
-      const sortPrice = product.sort((a, b) => a.price - b.price)
+      product.sort((a, b) => a.price - b.price)
     } else if (values === "price-descending") {
-      const sortPrice = product.sort((a, b) => b.price - a.price)
+      product.sort((a, b) => b.price - a.price)
     } else if (values === "title-ascending") {
-      const sortPrice = product.sort((a, b) => a.title.localeCompare(b.title))
+      product.sort((a, b) => a.title.localeCompare(b.title))
     } else if (values === "title-descending") {
-      const sortPrice = product.sort((a, b) => b.title.localeCompare(a.title))
+      product.sort((a, b) => b.title.localeCompare(a.title))
     } else if (values === "created-ascending") {
 
     } else if (values === "manual") {
