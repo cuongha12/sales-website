@@ -13,7 +13,6 @@ const SHop = () => {
   const [current, setCurrent] = useState(1)
   const [page, setPage] = useState(false)
   const [sort, setSort] = useState('created-descending')
-  const [item, setItem] = useState([])
   const [category, setCategory] = useState(false)
 
   const number = [1, 2, 3]
