@@ -25,34 +25,6 @@ const Login = () => {
         email: "",
         password: "",
       },
-      // validationSchema: Yup.object({
-      //   email: Yup.string()
-      //     .required("Email không chính xác "),
-      //   password: Yup.string()
-      //     .required("Mật khẩu không chính xác")
-
-
-      // }),
-      //   onSubmit: (values) => {
-      //     // const user = formData.find((e) => {
-      //     //   return e.email === values.email && e.password === values.password
-      //     // })
-      //     // if (!!user) {
-      //     //   alert('ddusng')
-      //     // } else {
-      //     //   alert('sai')
-
-      //     // }
-
-      //     // if (!!user) {
-      //     //   alert('đúng')
-      //     // } else if (formik.values.email === "" && formik.values.password === "") {
-      //     //   alert('rỗng')
-      //     // }
-      //     // else {
-      //     //   formik.validate.Yup()
-      //     // }
-      //   },
     });
   const userItems = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -63,7 +35,9 @@ const Login = () => {
       password: formik.values.password
     }
     const user = formData.find((e) => {
-      return e.email === formik.values.email && e.password === formik.values.password
+      return (e.email === formik.values.email && e.password === formik.values.password) ||
+        (e.name === formik.values.email && e.password === formik.values.password) ||
+        (e.phone === formik.values.email && e.password === formik.values.password)
     })
     if (formik.values.email === "" && formik.values.password === "") {
       return
@@ -74,7 +48,6 @@ const Login = () => {
         icon: "error",
         button: "Vui lòng đăng nhập lại!",
       });
-      console.log(user);
     }
     else if (!!user) {
       localStorage.setItem('user', JSON.stringify(userId))
@@ -83,7 +56,8 @@ const Login = () => {
         title: "Đăng nhập  thành công!",
         icon: "success",
         button: "Ok!",
-      });
+      }
+      );
       navigate('/')
     }
   }
@@ -105,12 +79,12 @@ const Login = () => {
                   <form className='user-form' onSubmit={(e) => handSubmit(e)}>
                     <div className='form-group'>
                       <input
-                        type="email"
+                        type="text"
                         id="email"
                         name="email"
                         value={formik.values.email}
                         onChange={formik.handleChange}
-                        placeholder="Enter your email"
+                        placeholder="Email/Số điện thoại/Tên đăng nhập"
                         className='form-control'
                       />
                       {formik.errors.email && (
@@ -124,7 +98,7 @@ const Login = () => {
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        placeholder="Enter your password"
+                        placeholder="Mật khẩu"
                         className='form-control'
                       />
                       {formik.errors.password && (

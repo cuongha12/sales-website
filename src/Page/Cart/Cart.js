@@ -25,10 +25,10 @@ const Cart = () => {
         } else if (data.quantity === 1) {
 
             swal({
-                title: "Bạn chắc chắn muốn bỏ sản phẩm này?",
+                text: "Bạn chắc chắn muốn bỏ sản phẩm này?",
                 icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                buttons:  true,
+                dangerMode:   true,
             })
                 .then((willDelete) => {
                     if (willDelete) {

@@ -64,7 +64,6 @@ var cartReducer = function cartReducer() {
       });
 
     case "REMOVE_FROM_CART":
-      console.log(action.playload);
       localStorage.setItem('cart', JSON.stringify(action.playload));
       return _objectSpread({}, state, {
         cartItems: action.playload,

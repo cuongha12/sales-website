@@ -623,148 +623,36 @@
   ],
   "user": [
     {
-      "email": "cuongcaycuhaha@gmail.com",
-      "name": "cuong",
-      "phone": "0387791205",
-      "password": "Cuongha12@",
-      "confirmedPassword": "Cuongha12@",
+      "email": "cuongha12@gmail.com",
+      "name": "cuongha12",
+      "phone": "0328296951",
+      "password": "123456a@",
+      "confirmedPassword": "123456a@",
       "id": 1
     },
     {
-      "email": "chetdisonglai2406@gmail.com",
+      "email": "admin@gmail.com",
       "name": "cuongha12",
-      "phone": "0387791205",
-      "password": "12345678a@",
-      "confirmedPassword": "12345678a@",
+      "phone": "0328296951",
+      "password": "1",
+      "confirmedPassword": "1",
       "id": 2
     },
     {
-      "email": "cuong123@gmail.com",
-      "name": "cuongha12",
-      "phone": "0387791205",
-      "password": "Cuong12@",
-      "confirmedPassword": "Cuong12@",
+      "email": "admin12@gmail.com",
+      "name": "admin",
+      "phone": "0329393293",
+      "password": "123456a@",
+      "confirmedPassword": "123456a@",
       "id": 3
     },
     {
-      "email": "letuyen123@gmail.com",
-      "name": "letuyen",
-      "phone": "0332132132",
-      "password": "Letuyen123@",
-      "confirmedPassword": "Letuyen123@",
+      "email": "hailua12@gmail.com",
+      "name": "hailu12",
+      "phone": "0985376801",
+      "password": "hailua12@",
+      "confirmedPassword": "hailua12@",
       "id": 4
-    },
-    {
-      "email": "letuyen12@gmail.com",
-      "name": "cuongha12",
-      "phone": "0321032130",
-      "password": "letuyen123@",
-      "confirmedPassword": "letuyen123@",
-      "id": 5
-    },
-    {
-      "email": "cuongha12@gmail.com",
-      "name": "cuong",
-      "phone": "0932193829",
-      "password": "cuongha12@",
-      "confirmedPassword": "cuongha12@",
-      "id": 6
-    },
-    {
-      "email": "long123@gmail.com",
-      "name": "cuongha12",
-      "phone": "0329302193",
-      "password": "long123@",
-      "confirmedPassword": "long123@",
-      "id": 7
-    },
-    {
-      "email": "long12@gmail.com",
-      "name": "Blog về CEO",
-      "phone": "0329302393",
-      "password": "long12@a",
-      "confirmedPassword": "long12@a",
-      "id": 8
-    },
-    {
-      "email": "cuongha24@gmail.com",
-      "name": "cuong",
-      "phone": "0323023906",
-      "password": "cuonghaa@1",
-      "confirmedPassword": "cuonghaa@1",
-      "id": 9
-    },
-    {
-      "email": "cuong123@gmail.com",
-      "name": "hello",
-      "phone": "0393923932",
-      "password": "1234567a@",
-      "confirmedPassword": "1234567a@",
-      "id": 10
-    },
-    {
-      "email": "cuong123@gmail.com",
-      "name": "hello",
-      "phone": "0393923932",
-      "password": "1234567a@",
-      "confirmedPassword": "1234567a@",
-      "id": 11
-    },
-    {
-      "email": "thai123@gmail.com",
-      "name": "thai",
-      "phone": "0421323323",
-      "password": "thai123@",
-      "confirmedPassword": "thai123@",
-      "id": 12
-    },
-    {
-      "email": "cuong123@gmail.com",
-      "name": "Blog về CEO",
-      "phone": "0932139323",
-      "password": "1234567a@",
-      "confirmedPassword": "1234567a@",
-      "id": 13
-    },
-    {
-      "email": "cuong13@gmail.com",
-      "name": "cuongha12",
-      "phone": "0392103931",
-      "password": "123456a@",
-      "confirmedPassword": "123456a@",
-      "id": 14
-    },
-    {
-      "email": "linh12@gmail.com",
-      "name": "linh",
-      "phone": "0902392039",
-      "password": "123456a@",
-      "confirmedPassword": "123456a@",
-      "id": 15
-    },
-    {
-      "email": "cuong09@gmail.com",
-      "name": "cuong",
-      "phone": "0323233232",
-      "password": "1234567a@",
-      "confirmedPassword": "1234567a@",
-      "id": 16
-    },
-    {
-      "email": "btvn123@gmail.com",
-      "name": "btnv",
-      "phone": "0320330239",
-      "password": "123456a@",
-      "confirmedPassword": "123456a@",
-      "id": 17
-    },
-    {
-      "email": "admin@gmail.com",
-      "name": "cuong",
-      "phone": "0387791205",
-      "password": "1",
-      "confirmedPassword": "1",
-      "id": 18
     }
   ]
 }

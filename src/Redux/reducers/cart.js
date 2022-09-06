@@ -51,7 +51,6 @@ const cartReducer = (state = initCart, action) => {
             }
 
         case "REMOVE_FROM_CART":
-            console.log(action.playload);
             localStorage.setItem('cart', JSON.stringify(action.playload))
             return {
                 ...state,

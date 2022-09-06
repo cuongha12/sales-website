@@ -32,8 +32,8 @@ const Detail = () => {
     }
     const [count, setCount] = useState(1)
     const dispatch = useDispatch()
-    const handUpdate = (e, data) => {
-        if (e.target.className === "action-plus") {
+    const handUpdate = (e, data,type) => {
+        if (type === "plus") {
             var item = {
                 id: data.id,
                 quantity: count + 1
@@ -95,11 +95,11 @@ const Detail = () => {
                                     </span>
                                 </h3>
                                 <div className='product-action'>
-                                    <button className='action-minus' onClick={(e) => handUpdate(e, product)}>
+                                    <button className='action-minus' onClick={(e) => handUpdate(e, product,"minus")}>
                                         <i className="fa-solid fa-minus" ></i>
                                     </button>
                                     <input className="action-input" title="Quantity Number" type="text" name="quantity" value={`${count}`} onChange={() => console.log('xx')} />
-                                    <button className="action-plus" title="Quantity Plus" onClick={(e) => handUpdate(e, product)}>
+                                    <button className="action-plus" title="Quantity Plus" onClick={(e) => handUpdate(e, product,"plus")}>
                                         <i className="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
