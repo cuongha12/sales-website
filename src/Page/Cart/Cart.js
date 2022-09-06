@@ -27,8 +27,8 @@ const Cart = () => {
             swal({
                 text: "Bạn chắc chắn muốn bỏ sản phẩm này?",
                 icon: "warning",
-                buttons:  true,
-                dangerMode:   true,
+                buttons: true,
+                dangerMode: true,
             })
                 .then((willDelete) => {
                     if (willDelete) {
