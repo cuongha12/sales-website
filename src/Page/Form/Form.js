@@ -53,16 +53,26 @@ const Form = () => {
         ),
     }),
     onSubmit: async (values) => {
-
       swal({
         title: "Đăng kí tài khoản thành công!",
         icon: "success",
         button: "Ok!",
       });
-      const userCard = await axios.post('http://localhost:3000/user',
-        formik.values)
-      dispatch(createUser(product))
-      navigate('/signup')
+      const userForm = product.find(e => {
+        return e.email === formik.values.email || e.phone === formik.values.phone
+      })
+      if (userForm) {
+        swal({
+          title: "Email hoặc số điện thoại này đã có người đăng kí",
+          icon: "error",
+          button: "Vui lòng đăng kí lại !",
+        });
+      } else {
+        const userCard = await axios.post('http://localhost:3000/user',
+          formik.values)
+        dispatch(createUser(product))
+        navigate('/signup')
+      }
     },
   });
   return (

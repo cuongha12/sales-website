@@ -4,6 +4,8 @@ import '../ProductHome/ProductHome.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../Redux/actions/cart';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const ProductHome = () => {
     const [product, setProduct] = useState([])
@@ -22,8 +24,10 @@ const ProductHome = () => {
     const dispatch = useDispatch()
     const user = useSelector(e => e.user)
 
+
     return (
         <section className='clearfix container'>
+
             <div className='row'>
                 <div className='col-md-12 col-sm-12 col-xs-12'>
                     <div className=''>
@@ -61,6 +65,7 @@ const ProductHome = () => {
                                                                 if (user.userId === null) {
                                                                     navigate('/signup')
                                                                 } else {
+
                                                                     dispatch(addToCart(e))
                                                                 }
 
@@ -217,6 +222,7 @@ const ProductHome = () => {
                     </div>
                 </div>
             </div>
+
         </section>
     )
 }
